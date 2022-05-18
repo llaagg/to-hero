@@ -10,13 +10,14 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:to-hero.init"
+        "onCommand:to-hero.init",
+        "onCommand:to-hero.hasDotNet"
     ],
     "main": "./out/extension.js",
     "contributes": {
         "commands": [{
-            "command": "to-hero.init",
-            "title": "has dotnet"
+            "command": "to-hero.hasDotNet",
+            "title": "Check if dot net is installed"
         }],
         "viewsContainers": {
             "activitybar": [{
