@@ -9,7 +9,7 @@ tools:
 * docs
 * VS Code: https://code.visualstudio.com/api/get-started/your-first-extension
 * TS: https://www.typescriptlang.org/docs/handbook/classes.html
-
+* Examples: https://github.com/microsoft/vscode-extension-samples
 
 # SDK
 choco install nvm

@@ -3,6 +3,7 @@ import { PlatformNfo } from "./platformnfo";
 
 export class PublicVariables
 {
+
     p: PlatformNfo;
     
     constructor() {
@@ -10,6 +11,12 @@ export class PublicVariables
     }
 
     setupDotNetFlag(pluginName: String){
-        vscode.commands.executeCommand('setContext', pluginName+'.checkHasDotNet', true);
+        let checkHasDotNet = this.p.hasDotNet();
+        vscode.commands.executeCommand('setContext', pluginName+'.checkHasDotNet', checkHasDotNet);
     }   
+    
+    setupWorkspace(pluginName: string, folderName:string) {
+        vscode.commands.executeCommand('setContext', pluginName+'.checkSandboxFolder', folderName);
+	}
+
 }

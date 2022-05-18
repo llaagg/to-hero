@@ -10,7 +10,7 @@
         "Other"
     ],
     "activationEvents": [
-        "*:to-hero.init",
+        "*",
         "onCommand:to-hero.hasDotNet"
     ],
     "main": "./out/extension.js",
@@ -22,7 +22,7 @@
         "viewsContainers": {
             "activitybar": [{
                 "id": "to-hero-manager",
-                "title": "To Hero C#",
+                "title": "Hero of .Net",
                 "icon": "resources/c_logo.svg"
             }]
         },
@@ -34,21 +34,27 @@
         },
         "viewsWelcome": [{
                 "view": "to-hero-manager",
-                "contents": "1. Install .net platform. [Learn more](https://aka.ms/vscode-scm)\n[Open Folder](command:vscode.openFolder)",
-                "when": "'to-hero.checkHasDotNet' == 'false'"
+                "contents": "1. Install [.NET SDK](https://dotnet.microsoft.com/en-us/download)",
+                "when": "to-hero.checkHasDotNet == false"
             },
             {
                 "view": "to-hero-manager",
-                "contents": "Dotnet installed",
-                "when": "'to-hero.checkHasDotNet'== 'true'"
+                "contents": "1. Dotnet installed ✅",
+                "when": "to-hero.checkHasDotNet"
             },
             {
                 "view": "to-hero-manager",
-                "contents": "2. Select sandbox. [Learn more](https://aka.ms/vscode-scm)\n[Open Folder](command:vscode.openFolder)"
+                "contents": "2. Select sandbox.\n[Open Sandbox Folder](command:to-hero.openSandbox)\nThis the place where all your applications will be stored.",
+                "when": "to-hero.checkSandboxFolder!=''"
             },
             {
                 "view": "to-hero-manager",
-                "contents": "3. Plugin c#. [Learn more](https://aka.ms/vscode-scm)\n[Open Folder](command:vscode.openFolder)"
+                "contents": "Sandbox 'to-hero.checkSandboxFolder'",
+                "when": "to-hero.checkSandboxFolder!=''"
+            },
+            {
+                "view": "to-hero-manager",
+                "contents": "3. Plugin for c# language. [Learn more](https://aka.ms/vscode-scm)\n[Open Folder](command:vscode.openFolder)"
             }
         ]
     },

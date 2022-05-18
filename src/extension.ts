@@ -3,21 +3,27 @@ import * as platform from './platformnfo';
 import { PublicVariables } from './publicvariables';
 
 
-export function activate(context: vscode.ExtensionContext) {
-	
+export async function activate(context: vscode.ExtensionContext) {
+
 	const pluginName = 'to-hero';
+	let pv = new PublicVariables();
 
-	let initCommand = vscode.commands.registerCommand(pluginName+ '.init', () => {
-		let pv = new PublicVariables();
-		pv.setupDotNetFlag(pluginName);
-	});
+	context.subscriptions.push(
+		vscode.commands.registerCommand(pluginName+ '.openSandbox', () => 
+		{
+			var result = vscode.window
+				.showOpenDialog({canSelectFiles : false, canSelectFolders: true, canSelectMany:false})
+				.then(uri=>{
+					if(uri)
+					{
+						pv.setupWorkspace(pluginName, uri[0].fsPath);
+					}
+				});
+			
+		})
+	);
 
-	let hasDotNetCommand = vscode.commands.registerCommand(pluginName+ '.hasDotNet', () => {
-		let platfromDetails = new platform.PlatformNfo();
-	});
-	
-	context.subscriptions.push(initCommand);
-	context.subscriptions.push(hasDotNetCommand);
+	pv.setupDotNetFlag(pluginName);	
 }
 
 // this method is called when your extension is deactivated
