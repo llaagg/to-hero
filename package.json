@@ -10,7 +10,7 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:to-hero.init",
+        "*:to-hero.init",
         "onCommand:to-hero.hasDotNet"
     ],
     "main": "./out/extension.js",
@@ -34,11 +34,21 @@
         },
         "viewsWelcome": [{
                 "view": "to-hero-manager",
-                "contents": "1. Install .net platform. [Learn more](https://aka.ms/vscode-scm)\n[Open Folder](command:vscode.openFolder)"
+                "contents": "1. Install .net platform. [Learn more](https://aka.ms/vscode-scm)\n[Open Folder](command:vscode.openFolder)",
+                "when": "'to-hero.checkHasDotNet' == 'false'"
+            },
+            {
+                "view": "to-hero-manager",
+                "contents": "Dotnet installed",
+                "when": "'to-hero.checkHasDotNet'== 'true'"
             },
             {
                 "view": "to-hero-manager",
                 "contents": "2. Select sandbox. [Learn more](https://aka.ms/vscode-scm)\n[Open Folder](command:vscode.openFolder)"
+            },
+            {
+                "view": "to-hero-manager",
+                "contents": "3. Plugin c#. [Learn more](https://aka.ms/vscode-scm)\n[Open Folder](command:vscode.openFolder)"
             }
         ]
     },
@@ -51,16 +61,16 @@
         "test": "node ./out/test/runTest.js"
     },
     "devDependencies": {
-        "@types/vscode": "^1.67.0",
         "@types/glob": "^7.2.0",
         "@types/mocha": "^9.1.1",
         "@types/node": "14.x",
+        "@types/vscode": "^1.67.0",
         "@typescript-eslint/eslint-plugin": "^5.21.0",
         "@typescript-eslint/parser": "^5.21.0",
+        "@vscode/test-electron": "^2.1.3",
         "eslint": "^8.14.0",
         "glob": "^8.0.1",
         "mocha": "^9.2.2",
-        "typescript": "^4.6.4",
-        "@vscode/test-electron": "^2.1.3"
+        "typescript": "^4.6.4"
     }
 }

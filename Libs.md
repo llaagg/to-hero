@@ -9,3 +9,9 @@ tools:
 * docs
 * VS Code: https://code.visualstudio.com/api/get-started/your-first-extension
 * TS: https://www.typescriptlang.org/docs/handbook/classes.html
+
+
+# SDK
+choco install nvm
+nvm install latest
+nvm use 18.2.0

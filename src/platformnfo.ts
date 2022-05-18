@@ -1,7 +1,4 @@
-import util from 'util';
-
-const cp = require('child_process');
-const exec = util.promisify(cp.exec);
+import * as execFile from 'child_process';
 
 export class PlatformNfo {
    
@@ -11,16 +8,14 @@ export class PlatformNfo {
 
     hasDotNet() : boolean{
         let ok = false;
-        const result = await exec(`my command`);
+        var fileRun = execFile.execFileSync("dotnet", ["--list-sdks"]);
+        var rows = fileRun.toString().split("\n");
         
-        cp.exec('dotnet --list-sdks', (err: string, stdout: string, stderr: string) => {
-            if (err) {
-                ok = false;
-            }
-
+        rows.forEach(dotnetRev => {
             ok=true;
+            console.log(dotnetRev);
         });
-
+        
         return ok;
     }
   }

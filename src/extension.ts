@@ -1,23 +1,20 @@
 import * as vscode from 'vscode';
 import * as platform from './platformnfo';
+import { PublicVariables } from './publicvariables';
+
 
 export function activate(context: vscode.ExtensionContext) {
 	
-	let initCommand = vscode.commands.registerCommand('to-hero.init', () => {
-		vscode.window.showInformationMessage('Hello World from to-hero!');
+	const pluginName = 'to-hero';
+
+	let initCommand = vscode.commands.registerCommand(pluginName+ '.init', () => {
+		let pv = new PublicVariables();
+		pv.setupDotNetFlag(pluginName);
 	});
 
-	let hasDotNetCommand = vscode.commands.registerCommand('to-hero.hasDotNet', () => {
-
-		let greeter = new platform.PlatformNfo();
-		if(!greeter.hasDotNet())
-		{
-			console.log('Dotnet not found');
-		}
-	
-		vscode.window.showInformationMessage('Hello World from to-hero!');
+	let hasDotNetCommand = vscode.commands.registerCommand(pluginName+ '.hasDotNet', () => {
+		let platfromDetails = new platform.PlatformNfo();
 	});
-
 	
 	context.subscriptions.push(initCommand);
 	context.subscriptions.push(hasDotNetCommand);
