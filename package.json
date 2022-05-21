@@ -37,12 +37,13 @@
         "views": {
             "to-hero-manager": [{
                     "id": "to-hero-manager",
-                    "name": "From 0 to .net Hero - initialization"
+                    "name": "Initialization"
                 },
                 {
                     "type": "webview",
                     "id": "to-hero.projectsView",
-                    "name": "Hero sandbox"
+                    "name": "Hero sandbox",
+                    "when": "to-hero.checkHasDotNet && config.to-hero.sandboxFolder && to-hero.checkHasCSharp"
                 }
             ]
 

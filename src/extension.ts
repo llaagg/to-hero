@@ -30,7 +30,6 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	pv.setupDotNetFlag(pluginName);	
 	pv.setupExtensionCSharpFlag(pluginName);
-	pv.setupCompleteFlag(pluginName, context);
 }
 
 // this method is called when your extension is deactivated
