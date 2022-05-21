@@ -15,8 +15,20 @@ export class PublicVariables
         vscode.commands.executeCommand('setContext', pluginName+'.checkHasDotNet', checkHasDotNet);
     }   
     
-    setupWorkspace(pluginName: string, folderName:string) {
-        vscode.commands.executeCommand('setContext', pluginName+'.checkSandboxFolder', folderName);
+    async setupWorkspace(pluginName: string, folderName:string) {
+        await vscode.workspace
+            .getConfiguration()
+            .update(pluginName+ ".sandboxFolder", folderName, vscode.ConfigurationTarget.Global);
 	}
 
+	setupExtensionCSharpFlag(pluginName: string) {
+		var extension = vscode.extensions.getExtension("ms-dotnettools.csharp");
+        let hasExtension = false;
+        if(extension)
+        {
+            hasExtension = true;
+        }
+
+        vscode.commands.executeCommand('setContext', pluginName+'.checkHasCSharp', hasExtension);
+	}
 }

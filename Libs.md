@@ -7,6 +7,8 @@ tools:
 * npm install -g typescript
 
 * docs
+* Views: https://code.visualstudio.com/api/references/contribution-points#contributes.views
+* When: https://code.visualstudio.com/api/references/when-clause-contexts
 * VS Code: https://code.visualstudio.com/api/get-started/your-first-extension
 * TS: https://www.typescriptlang.org/docs/handbook/classes.html
 * Examples: https://github.com/microsoft/vscode-extension-samples

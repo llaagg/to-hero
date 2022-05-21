@@ -13,17 +13,17 @@ export async function activate(context: vscode.ExtensionContext) {
 		{
 			var result = vscode.window
 				.showOpenDialog({canSelectFiles : false, canSelectFolders: true, canSelectMany:false})
-				.then(uri=>{
+				.then(async uri=>{
 					if(uri)
 					{
-						pv.setupWorkspace(pluginName, uri[0].fsPath);
+						await pv.setupWorkspace(pluginName, uri[0].fsPath);
 					}
-				});
-			
+				});			
 		})
 	);
 
 	pv.setupDotNetFlag(pluginName);	
+	pv.setupExtensionCSharpFlag(pluginName);
 }
 
 // this method is called when your extension is deactivated

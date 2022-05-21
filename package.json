@@ -1,7 +1,7 @@
 {
     "name": "to-hero",
-    "displayName": "to-hero",
-    "description": "Addon to simplfy the process of introduction to .net c#",
+    "displayName": "From 0 To .net hero",
+    "description": "Sinmple introduction to .net c#",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.67.0"
@@ -10,11 +10,19 @@
         "Other"
     ],
     "activationEvents": [
-        "*",
-        "onCommand:to-hero.hasDotNet"
+        "onView:to-hero-manager"
     ],
     "main": "./out/extension.js",
     "contributes": {
+        "configuration": [{
+            "title": "From 0 To .net hero",
+            "properties": {
+                "to-hero.sandboxFolder": {
+                    "type": "string",
+                    "description": "Place where all the project can be found."
+                }
+            }
+        }],
         "commands": [{
             "command": "to-hero.hasDotNet",
             "title": "Check if dot net is installed"
@@ -45,16 +53,22 @@
             {
                 "view": "to-hero-manager",
                 "contents": "2. Select sandbox.\n[Open Sandbox Folder](command:to-hero.openSandbox)\nThis the place where all your applications will be stored.",
-                "when": "to-hero.checkSandboxFolder!=''"
+                "when": "!config.to-hero.sandboxFolder"
             },
             {
                 "view": "to-hero-manager",
-                "contents": "Sandbox 'to-hero.checkSandboxFolder'",
-                "when": "to-hero.checkSandboxFolder!=''"
+                "contents": "2. Sandbox selected ✅",
+                "when": "config.to-hero.sandboxFolder"
             },
             {
                 "view": "to-hero-manager",
-                "contents": "3. Plugin for c# language. [Learn more](https://aka.ms/vscode-scm)\n[Open Folder](command:vscode.openFolder)"
+                "contents": "3. Plugin for c# language. [Install](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)",
+                "when": "!to-hero.checkHasCSharp"
+            },
+            {
+                "view": "to-hero-manager",
+                "contents": "3. C# extension ✅",
+                "when": "to-hero.checkHasCSharp"
             }
         ]
     },
