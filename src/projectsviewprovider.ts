@@ -2,7 +2,6 @@ import * as vscode from 'vscode';
 
 export class ProjectsViewProvider implements vscode.WebviewViewProvider {
     private _view?: vscode.WebviewView;
-    
 	public static readonly viewType = 'to-hero.projectsView';
 
     constructor(
@@ -41,40 +40,66 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 
 
     private _getHtmlForWebview(webview: vscode.Webview) {
-		// Get the local path to main script run in the webview, then convert it to a uri we can use in the webview.
-		const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'main.js'));
-
-		// Do the same for the stylesheet.
-		const styleResetUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'reset.css'));
-		const styleVSCodeUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'vscode.css'));
-		const styleMainUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'main.css'));
-
-		// Use a nonce to only allow a specific script to be run.
 		const nonce = this.getNonce();
 
-		return `<!DOCTYPE html>
-			<html lang="en">
-			<head>
-				<meta charset="UTF-8">
-				<!--
-					Use a content security policy to only allow loading images from https or from our extension directory,
-					and only allow scripts that have a specific nonce.
-				-->
-				<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
-				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-				<link href="${styleResetUri}" rel="stylesheet">
-				<link href="${styleVSCodeUri}" rel="stylesheet">
-				<link href="${styleMainUri}" rel="stylesheet">
+		const htmlHead = this.getHeader(webview, nonce);
+		const htmlFoot = this.getFooter(webview, nonce);
+
+		// list all folders
+		// enable watch adnd refresh
+
+		return htmlHead +
+`	
 				
-				<title>Cat Colors</title>
-			</head>
-			<body>
-				<ul class="color-list">
-				</ul>
-				<button class="add-color-button">Heading nowhere</button>
-				<script nonce="${nonce}" src="${scriptUri}"></script>
-			</body>
-			</html>`;
+<div class="flex-container">
+<div>🗀<br/>asd</div>
+<div>🗀<br/>asd</div>
+<div>🗀<br/>asd</div>
+</div>
+
+
+<button class="add-color-button">Heading nowhere</button>
+`
+			+ htmlFoot;
+	}
+
+	getFile(webview: vscode.Webview, fName: string){
+		return webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', fName));
+	}
+
+	getFooter(webview: vscode.Webview, nonce: String):string {
+		const scriptUri = this.getFile(webview, 'main.js');
+
+		return `			
+			<script nonce="${nonce}" src="${scriptUri}"></script>
+		</body>
+		</html>`;
+	}
+
+	getHeader(webview: vscode.Webview, nonce: String):string {
+
+		// Do the same for the stylesheet.
+		const styleResetUri = this.getFile(webview, "reset.css");
+		const styleVSCodeUri = this.getFile(webview, "vscode.css");
+		const styleMainUri = this.getFile(webview, "main.css");
+
+		return `<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<!--
+				Use a content security policy to only allow loading images from https or from our extension directory,
+				and only allow scripts that have a specific nonce.
+			-->
+			<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link href="${styleResetUri}" rel="stylesheet">
+			<link href="${styleVSCodeUri}" rel="stylesheet">
+			<link href="${styleMainUri}" rel="stylesheet">
+			
+			<title>Cat Colors</title>
+		</head>
+		<body>`;
 	}
 
     getNonce() {
