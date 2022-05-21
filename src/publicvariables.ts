@@ -3,7 +3,6 @@ import { PlatformNfo } from "./platformnfo";
 
 export class PublicVariables
 {
-
     p: PlatformNfo;
     
     constructor() {
@@ -31,4 +30,10 @@ export class PublicVariables
 
         vscode.commands.executeCommand('setContext', pluginName+'.checkHasCSharp', hasExtension);
 	}
+
+    setupCompleteFlag(pluginName: string, context: vscode.ExtensionContext) {
+		var d = context.environmentVariableCollection.get(pluginName + ".checkHasDotNet")?.value;
+
+	}
+   
 }

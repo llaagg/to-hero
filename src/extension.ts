@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as platform from './platformnfo';
+import { ProjectsViewProvider } from './projectsviewprovider';
 import { PublicVariables } from './publicvariables';
 
 
@@ -22,8 +23,14 @@ export async function activate(context: vscode.ExtensionContext) {
 		})
 	);
 
+	context.subscriptions.push(
+		vscode.window.registerWebviewViewProvider(ProjectsViewProvider.viewType, 
+		new ProjectsViewProvider(context.extensionUri)		
+	));
+
 	pv.setupDotNetFlag(pluginName);	
 	pv.setupExtensionCSharpFlag(pluginName);
+	pv.setupCompleteFlag(pluginName, context);
 }
 
 // this method is called when your extension is deactivated

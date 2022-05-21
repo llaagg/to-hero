@@ -36,9 +36,16 @@
         },
         "views": {
             "to-hero-manager": [{
-                "id": "to-hero-manager",
-                "name": "Helpers"
-            }]
+                    "id": "to-hero-manager",
+                    "name": "From 0 to .net Hero - initialization"
+                },
+                {
+                    "type": "webview",
+                    "id": "to-hero.projectsView",
+                    "name": "Hero sandbox"
+                }
+            ]
+
         },
         "viewsWelcome": [{
                 "view": "to-hero-manager",
