@@ -52,15 +52,26 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 `	
 				
 <div class="flex-container">
-<div>🗀<br/>asd</div>
-<div>🗀<br/>asd</div>
-<div>🗀<br/>asd</div>
+` + 
+this.getIcon('assss') +
+this.getIcon('bvvv') +
+this.getIcon('vsss') +
+this.getIcon('fasdasd asdasd') +
+this.getIcon('asdsds') +
+`
 </div>
 
 
 <button class="add-color-button">Heading nowhere</button>
 `
 			+ htmlFoot;
+	}
+
+	getIcon(label: String) : string
+	{
+		return `<div class="item">
+		<span class="icon">🗀</span>
+		<span class="caption">`+label+`</span></div>`;
 	}
 
 	getFile(webview: vscode.Webview, fName: string){
@@ -76,7 +87,7 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 		</html>`;
 	}
 
-	getHeader(webview: vscode.Webview, nonce: String):string {
+	getHeader(webview: vscode.Webview, nonce: string):string {
 
 		// Do the same for the stylesheet.
 		const styleResetUri = this.getFile(webview, "reset.css");

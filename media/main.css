@@ -11,3 +11,20 @@ body {
     padding: 20px;
     font-size: 30px;
 }
+
+div.item {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 50px;
+}
+
+item.caption {
+    width: 30px;
+    height: 30px;
+    background-color: blue;
+}
+
+.caption {
+    display: block;
+}
