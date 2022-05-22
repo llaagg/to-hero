@@ -2,7 +2,6 @@ import * as vscode from 'vscode';
 import * as execFile from 'child_process';
 import * as fs from 'fs';
 import path = require('path');
-import { start } from 'repl';
 import { Uri } from 'vscode';
 
 
