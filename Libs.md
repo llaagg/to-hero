@@ -17,3 +17,4 @@ nvm install latest
 nvm use 18.2.0
 npm install -g typescript
 npm install -g vsce
+npm install --global gulp-cli
