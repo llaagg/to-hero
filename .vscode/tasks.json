@@ -15,6 +15,15 @@
 				"kind": "build",
 				"isDefault": true
 			}
-		}
+		},
+        {
+            "label": "package-extension",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "command": "vsce package",
+            "problemMatcher": []
+        }
 	]
 }

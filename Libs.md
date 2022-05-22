@@ -18,3 +18,4 @@ tools:
 choco install nvm
 nvm install latest
 nvm use 18.2.0
+npm install -g vsce
