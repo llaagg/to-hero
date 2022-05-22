@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { InputBoxOptions } from 'vscode';
 import { NetHelper } from './nethelper';
 import * as platform from './platformnfo';
 import { ProjectsViewProvider } from './projectsviewprovider';
@@ -32,7 +33,21 @@ export async function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand(pluginName + '.newProject', () => {
 			var nh = new NetHelper(pv.getWorkspace());
-			nh.newProject('a');
+
+			const options: InputBoxOptions={
+				title: "New project name",
+				value: nh.generateFolderName(),
+				validateInput: (a: string)=>{
+					var nh = new NetHelper(pv.getWorkspace());
+					return nh.validateFolder(a);
+				},
+				prompt: "Please provide a name for a new program"
+			};			
+
+			vscode.window.showInputBox(options).then(e=>{
+				nh.newProject(e!);
+			});
+			
 		}));
 
 	pv.setupDotNetFlag();	

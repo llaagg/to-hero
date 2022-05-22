@@ -1,4 +1,9 @@
+import * as vscode from 'vscode';
 import * as execFile from 'child_process';
+import * as fs from 'fs';
+import path = require('path');
+import { start } from 'repl';
+
 
 export class NetHelper{
 
@@ -14,13 +19,41 @@ export class NetHelper{
         };
         
         var fileRun = execFile.execFileSync(
-            "dotnet"
-            ,["new", "console", "--name", projectName]
-            ,options
+                "dotnet"
+                ,["new", "console", "--name", projectName]
+                ,options
             );
         var rows = fileRun.toString().split("\n");
         rows.forEach(dotnetRev => {
             console.log(dotnetRev);
         });
+
+        vscode.window.showInformationMessage("Project "+projectName+"created");
+    }
+
+    
+    public validateFolder(folder: string) : (string | undefined)
+    {
+        if(fs.existsSync(path.join(this._workspaceFolder , folder)))
+        {
+            return "Folder "+folder+" is taken.";
+        }
+
+        // ok
+        return undefined;
+    }
+
+    public generateFolderName() : string
+    {
+        let startName = "HelloHero";
+        let currentName = startName;
+        let idx = 0;
+
+        while(this.validateFolder(currentName) !== undefined)
+        {
+            idx++;
+            currentName = startName + idx;
+        }
+        return currentName;
     }
 }

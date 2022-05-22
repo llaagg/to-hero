@@ -7,10 +7,12 @@
         "vscode": "^1.67.0"
     },
     "categories": [
-        "Other"
+        "Education",
+        "Programming Languages"
     ],
     "activationEvents": [
-        "onView:to-hero-manager"
+        "onView:to-hero-manager",
+        "onCommand:to-hero.newProject"
     ],
     "main": "./out/extension.js",
     "contributes": {
@@ -29,6 +31,9 @@
         }, {
             "command": "to-hero.openSandbox",
             "title": "Change hero sandbox"
+        }, {
+            "command": "to-hero.newProject",
+            "title": "New .NET project done as hero"
         }],
         "viewsContainers": {
             "activitybar": [{
