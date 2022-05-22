@@ -11,10 +11,9 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 
     constructor(
 		private readonly _extensionUri: vscode.Uri,
-		pluginName: string
+		private readonly _pluginName: string
 	) { 
-
-		this._variables = new PublicVariables(pluginName);
+		this._variables = new PublicVariables(_pluginName);
 		this._projectsManager = new ProjectsManager(this._variables.getWorkspace());
 	}
 
@@ -44,13 +43,12 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 					break;
 				case 'newProject':
 					{
-						vscode.window.showInformationMessage("new!");
+						vscode.commands.executeCommand(this._pluginName+".newProject");
 					}
 					break;
 			}
 		});
     }
-
 
     private _getHtmlForWebview(webview: vscode.Webview) {
 		const nonce = this.getNonce();
@@ -58,12 +56,18 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 		let html = ``;
 
 		html += this.getHeader(webview, nonce);
+		html += this.renderFolderName();
+		html += '<hr/>';
 		html += this.renderFolder();
 		html += '<hr/>';
 		html += this.renderToolBar();
 		html += this.getFooter(webview, nonce);
 
 		return html;
+	}
+
+	private renderFolderName() {
+		return '<h1>'+ this._variables.getWorkspace() +'</h1>';
 	}
 	
 	private renderToolBar() {
@@ -79,7 +83,7 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 		var files = this._projectsManager.getFolders();
 
 		if (files.length === 0) {
-			html += `<span>start new project</span>`;
+			html += `<span>There is nothing here. Start new project to become a hero.</span>`;
 		} else {
 			var folderList = ``;
 			for (var item of files) {

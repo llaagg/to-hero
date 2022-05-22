@@ -13,8 +13,7 @@ export class PublicVariables
         let checkHasDotNet = this.p.hasDotNet();
         vscode.commands.executeCommand('setContext', this._pluginName+'.checkHasDotNet', checkHasDotNet);
     }   
-    
-    
+        
 	setupExtensionCSharpFlag() {
 		var extension = vscode.extensions.getExtension("ms-dotnettools.csharp");
         let hasExtension = false;
@@ -26,10 +25,6 @@ export class PublicVariables
         vscode.commands.executeCommand('setContext', this._pluginName+'.checkHasCSharp', hasExtension);
 	}
 
-    setupCompleteFlag(context: vscode.ExtensionContext) {
-		var d = context.environmentVariableCollection.get(this._pluginName + ".checkHasDotNet")?.value;
-	}
-   
     async setupWorkspace(folderName:string) {
         await vscode.workspace
             .getConfiguration()

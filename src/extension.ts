@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { NetHelper } from './nethelper';
 import * as platform from './platformnfo';
 import { ProjectsViewProvider } from './projectsviewprovider';
 import { PublicVariables } from './publicvariables';
@@ -12,7 +13,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand(pluginName+ '.openSandbox', () => 
 		{
-			var result = vscode.window
+			vscode.window
 				.showOpenDialog({canSelectFiles : false, canSelectFolders: true, canSelectMany:false})
 				.then(async uri=>{
 					if(uri)
@@ -30,9 +31,8 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand(pluginName + '.newProject', () => {
-			
-			vscode.window.showInformationMessage("ha");
-
+			var nh = new NetHelper(pv.getWorkspace());
+			nh.newProject('a');
 		}));
 
 	pv.setupDotNetFlag();	
