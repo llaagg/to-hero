@@ -4,6 +4,9 @@
     "description": "Sinmple introduction to .net c#",
     "version": "0.9.1",
     "publisher": "galcorp",
+    "repository": {
+        "url": " https://github.com/llaagg/"
+    },
     "engines": {
         "vscode": "^1.67.0"
     },
