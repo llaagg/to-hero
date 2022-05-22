@@ -3,6 +3,7 @@ import * as execFile from 'child_process';
 import * as fs from 'fs';
 import path = require('path');
 import { start } from 'repl';
+import { Uri } from 'vscode';
 
 
 export class NetHelper{
@@ -28,7 +29,8 @@ export class NetHelper{
             console.log(dotnetRev);
         });
 
-        vscode.window.showInformationMessage("Project "+projectName+"created");
+        let newProjectFolder =  Uri.file(path.join(this._workspaceFolder , projectName));
+        vscode.commands.executeCommand("vscode.openFolder", newProjectFolder);
     }
 
     
