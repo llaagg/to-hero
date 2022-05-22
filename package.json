@@ -26,6 +26,9 @@
         "commands": [{
             "command": "to-hero.hasDotNet",
             "title": "Check if dot net is installed"
+        }, {
+            "command": "to-hero.openSandbox",
+            "title": "Change hero sandbox"
         }],
         "viewsContainers": {
             "activitybar": [{

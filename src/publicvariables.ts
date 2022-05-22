@@ -5,22 +5,17 @@ export class PublicVariables
 {
     p: PlatformNfo;
     
-    constructor() {
+    constructor(private readonly _pluginName: string) {
         this.p = new PlatformNfo();
     }
 
-    setupDotNetFlag(pluginName: String){
+    setupDotNetFlag(){
         let checkHasDotNet = this.p.hasDotNet();
-        vscode.commands.executeCommand('setContext', pluginName+'.checkHasDotNet', checkHasDotNet);
+        vscode.commands.executeCommand('setContext', this._pluginName+'.checkHasDotNet', checkHasDotNet);
     }   
     
-    async setupWorkspace(pluginName: string, folderName:string) {
-        await vscode.workspace
-            .getConfiguration()
-            .update(pluginName+ ".sandboxFolder", folderName, vscode.ConfigurationTarget.Global);
-	}
-
-	setupExtensionCSharpFlag(pluginName: string) {
+    
+	setupExtensionCSharpFlag() {
 		var extension = vscode.extensions.getExtension("ms-dotnettools.csharp");
         let hasExtension = false;
         if(extension)
@@ -28,12 +23,25 @@ export class PublicVariables
             hasExtension = true;
         }
 
-        vscode.commands.executeCommand('setContext', pluginName+'.checkHasCSharp', hasExtension);
+        vscode.commands.executeCommand('setContext', this._pluginName+'.checkHasCSharp', hasExtension);
 	}
 
-    setupCompleteFlag(pluginName: string, context: vscode.ExtensionContext) {
-		var d = context.environmentVariableCollection.get(pluginName + ".checkHasDotNet")?.value;
-
+    setupCompleteFlag(context: vscode.ExtensionContext) {
+		var d = context.environmentVariableCollection.get(this._pluginName + ".checkHasDotNet")?.value;
 	}
    
+    async setupWorkspace(folderName:string) {
+        await vscode.workspace
+            .getConfiguration()
+            .update(this._pluginName+ ".sandboxFolder", folderName, vscode.ConfigurationTarget.Global);
+	}
+
+    getWorkspace(): string
+    {
+        let settingsValue =  vscode.workspace
+            .getConfiguration()
+            .get<string>(this._pluginName + ".sandboxFolder");
+
+        return settingsValue!;
+    }
 }
