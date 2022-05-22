@@ -4,27 +4,17 @@ body {
 
 .flex-container {
     display: flex;
+    flex-direction: column;
 }
 
 .flex-container>div {
-    margin: 10px;
-    padding: 20px;
+    margin: 0px;
+    padding: 0px;
     font-size: 30px;
 }
 
 div.item {
     vertical-align: top;
     display: inline-block;
-    text-align: center;
-    width: 50px;
-}
-
-item.caption {
-    width: 30px;
-    height: 30px;
-    background-color: blue;
-}
-
-.caption {
-    display: block;
+    text-align: left;
 }

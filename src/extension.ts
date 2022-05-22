@@ -28,6 +28,13 @@ export async function activate(context: vscode.ExtensionContext) {
 		new ProjectsViewProvider(context.extensionUri)		
 	));
 
+	context.subscriptions.push(
+		vscode.commands.registerCommand(pluginName + 'newProject', () => {
+			
+			vscode.window.showInformationMessage("ha");
+
+		}));
+
 	pv.setupDotNetFlag(pluginName);	
 	pv.setupExtensionCSharpFlag(pluginName);
 }

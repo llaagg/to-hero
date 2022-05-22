@@ -29,9 +29,14 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 
 		webviewView.webview.onDidReceiveMessage(data => {
 			switch (data.type) {
+				case 'folderSelcted':
+					{
+						vscode.window.showInformationMessage("folder selcted");
+					}
+					break;
 				case 'colorSelected':
 					{
-						vscode.window.activeTextEditor?.insertSnippet(new vscode.SnippetString(`#${data.value}`));
+						vscode.commands.executeCommand("to-hero.newProject");
 						break;
 					}
 			}
@@ -49,15 +54,11 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 		// enable watch adnd refresh
 
 		return htmlHead +
-`	
-				
+`			
 <div class="flex-container">
 ` + 
-this.getIcon('assss') +
-this.getIcon('bvvv') +
-this.getIcon('vsss') +
-this.getIcon('fasdasd asdasd') +
-this.getIcon('asdsds') +
+this.getIcon('assss',nonce) +
+this.getIcon('bvvv',nonce) +
 `
 </div>
 
@@ -67,11 +68,10 @@ this.getIcon('asdsds') +
 			+ htmlFoot;
 	}
 
-	getIcon(label: String) : string
+	getIcon(label: String, nonce: String) : string
 	{
 		return `<div class="item">
-		<span class="icon">🗀</span>
-		<span class="caption">`+label+`</span></div>`;
+		<span class="folder" nonce="${nonce}" onclick="folderSelcted('`+label+`')" >🗀 `+label+`</span></div>`;
 	}
 
 	getFile(webview: vscode.Webview, fName: string){
@@ -98,17 +98,14 @@ this.getIcon('asdsds') +
 		<html lang="en">
 		<head>
 			<meta charset="UTF-8">
-			<!--
-				Use a content security policy to only allow loading images from https or from our extension directory,
-				and only allow scripts that have a specific nonce.
-			-->
+
 			<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<link href="${styleResetUri}" rel="stylesheet">
 			<link href="${styleVSCodeUri}" rel="stylesheet">
 			<link href="${styleMainUri}" rel="stylesheet">
 			
-			<title>Cat Colors</title>
+			<title>To hero sandbox</title>
 		</head>
 		<body>`;
 	}

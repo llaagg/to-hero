@@ -37,7 +37,8 @@
         "views": {
             "to-hero-manager": [{
                     "id": "to-hero-manager",
-                    "name": "Initialization"
+                    "name": "Initialization",
+                    "visibility": "collapsed"
                 },
                 {
                     "type": "webview",
