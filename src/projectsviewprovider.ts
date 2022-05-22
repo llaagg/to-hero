@@ -31,14 +31,9 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 			switch (data.type) {
 				case 'folderSelcted':
 					{
-						vscode.window.showInformationMessage("folder selcted");
+						vscode.window.showInformationMessage("folder selcted"+data.value);
 					}
 					break;
-				case 'colorSelected':
-					{
-						vscode.commands.executeCommand("to-hero.newProject");
-						break;
-					}
 			}
 		});
     }
@@ -71,7 +66,7 @@ this.getIcon('bvvv',nonce) +
 	getIcon(label: String, nonce: String) : string
 	{
 		return `<div class="item">
-		<span class="folder" nonce="${nonce}" onclick="folderSelcted('`+label+`')" >🗀 `+label+`</span></div>`;
+		<span class="folder" folderName="`+label+`" >🗀 `+label+`</span></div>`;
 	}
 
 	getFile(webview: vscode.Webview, fName: string){
