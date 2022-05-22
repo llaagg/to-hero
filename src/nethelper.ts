@@ -29,10 +29,14 @@ export class NetHelper{
             console.log(dotnetRev);
         });
 
+        this.openProject(projectName);
+    }
+
+
+    public openProject(projectName: string){
         let newProjectFolder =  Uri.file(path.join(this._workspaceFolder , projectName));
         vscode.commands.executeCommand("vscode.openFolder", newProjectFolder);
     }
-
     
     public validateFolder(folder: string) : (string | undefined)
     {
