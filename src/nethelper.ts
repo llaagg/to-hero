@@ -44,7 +44,7 @@ export class NetHelper{
             return "Folder "+folder+" is taken.";
         }
 
-        // ok
+        // if result is undefined then validation is ok
         return undefined;
     }
 

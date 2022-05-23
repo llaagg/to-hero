@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { pluginName } from './extension';
 import { ProjectsManager } from './projectsmanager';
 import { PublicVariables } from './publicvariables';
 
@@ -10,10 +11,9 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 	private _projectsManager: ProjectsManager;
 
     constructor(
-		private readonly _extensionUri: vscode.Uri,
-		private readonly _pluginName: string
+		private readonly _extensionUri: vscode.Uri
 	) { 
-		this._variables = new PublicVariables(_pluginName);
+		this._variables = new PublicVariables();
 		this._projectsManager = new ProjectsManager(this._variables.getWorkspace());
 	}
 
@@ -43,7 +43,7 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 					break;
 				case 'newProject':
 					{
-						vscode.commands.executeCommand(this._pluginName+".newProject");
+						vscode.commands.executeCommand(pluginName+".newProject");
 					}
 					break;
 			}
@@ -83,7 +83,7 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 		var files = this._projectsManager.getFolders();
 
 		if (files.length === 0) {
-			html += `<span>There is nothing here. Start new project to become a hero.</span>`;
+			html += `<span>There is nothing here. Start new project to become a Hero. (click the fish)</span>`;
 		} else {
 			var folderList = ``;
 			for (var item of files) {

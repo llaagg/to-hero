@@ -5,11 +5,11 @@ import * as platform from './platformnfo';
 import { ProjectsViewProvider } from './projectsviewprovider';
 import { PublicVariables } from './publicvariables';
 
+export const pluginName:string = 'to-hero';
 
 export async function activate(context: vscode.ExtensionContext) {
 
-	const pluginName = 'to-hero';
-	let pv = new PublicVariables(pluginName);
+	let pv = new PublicVariables();
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand(pluginName+ '.openSandbox', () => 
@@ -20,15 +20,11 @@ export async function activate(context: vscode.ExtensionContext) {
 					if(uri)
 					{
 						await pv.setupWorkspace(uri[0].fsPath);
+						pv.setupSandboxOK();
 					}
 				});			
 		})
 	);
-
-	context.subscriptions.push(
-		vscode.window.registerWebviewViewProvider(ProjectsViewProvider.viewType, 
-		new ProjectsViewProvider(context.extensionUri, pluginName)		
-	));
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand(pluginName + '.newProject', () => {
@@ -50,8 +46,15 @@ export async function activate(context: vscode.ExtensionContext) {
 			
 		}));
 
+	context.subscriptions.push(
+		vscode.window.registerWebviewViewProvider(ProjectsViewProvider.viewType, 
+		new ProjectsViewProvider(context.extensionUri)		
+	));
+
+	
 	pv.setupDotNetFlag();	
 	pv.setupExtensionCSharpFlag();
+	pv.setupSandboxOK();
 }
 
 // this method is called when your extension is deactivated

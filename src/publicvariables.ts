@@ -1,17 +1,19 @@
+import path = require('path');
 import * as vscode from 'vscode';
+import { pluginName } from './extension';
 import { PlatformNfo } from "./platformnfo";
+
+const fs = require("fs");
 
 export class PublicVariables
 {
-    p: PlatformNfo;
+	p: PlatformNfo = new PlatformNfo();
     
-    constructor(private readonly _pluginName: string) {
-        this.p = new PlatformNfo();
-    }
+    constructor() {}
 
     setupDotNetFlag(){
         let checkHasDotNet = this.p.hasDotNet();
-        vscode.commands.executeCommand('setContext', this._pluginName+'.checkHasDotNet', checkHasDotNet);
+        vscode.commands.executeCommand('setContext', pluginName+'.checkHasDotNet', checkHasDotNet);
     }   
         
 	setupExtensionCSharpFlag() {
@@ -22,20 +24,26 @@ export class PublicVariables
             hasExtension = true;
         }
 
-        vscode.commands.executeCommand('setContext', this._pluginName+'.checkHasCSharp', hasExtension);
+        vscode.commands.executeCommand('setContext', pluginName+'.checkHasCSharp', hasExtension);
 	}
 
+    setupSandboxOK() {
+		var ws = this.getWorkspace();
+        var e = fs.existsSync(ws);
+        vscode.commands.executeCommand('setContext', pluginName+'.checkSandboxOk', e);
+	}
+    
     async setupWorkspace(folderName:string) {
         await vscode.workspace
             .getConfiguration()
-            .update(this._pluginName+ ".sandboxFolder", folderName, vscode.ConfigurationTarget.Global);
+            .update(pluginName+ ".sandboxFolder", folderName, vscode.ConfigurationTarget.Global);
 	}
 
     getWorkspace(): string
     {
         let settingsValue =  vscode.workspace
             .getConfiguration()
-            .get<string>(this._pluginName + ".sandboxFolder");
+            .get<string>(pluginName + ".sandboxFolder");
 
         return settingsValue!;
     }
