@@ -90,6 +90,10 @@
                 "view": "to-hero-manager",
                 "contents": "3. C# extension ✅",
                 "when": "to-hero.checkHasCSharp"
+            },
+            {
+                "view": "to-hero-manager",
+                "contents": "[Refresh](command:to-hero.refreshFlags)"
             }
         ]
     },
