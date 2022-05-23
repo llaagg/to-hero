@@ -74,12 +74,12 @@
             {
                 "view": "to-hero-manager",
                 "contents": "2. Select sandbox.\n[Open Sandbox Folder](command:to-hero.openSandbox)\nThis the place where all your applications will be stored.",
-                "when": "!config.to-hero.sandboxFolder"
+                "when": "!to-hero.checkSandboxOk"
             },
             {
                 "view": "to-hero-manager",
-                "contents": "2. Sandbox selected ✅",
-                "when": "config.to-hero.sandboxFolder"
+                "contents": "2. Sandbox selected ✅ [Edit](command:to-hero.openSandbox)",
+                "when": "to-hero.checkSandboxOk"
             },
             {
                 "view": "to-hero-manager",

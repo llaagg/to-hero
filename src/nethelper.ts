@@ -3,12 +3,14 @@ import * as execFile from 'child_process';
 import * as fs from 'fs';
 import path = require('path');
 import { Uri } from 'vscode';
+import { pluginName } from './extension';
 
 
 export class NetHelper{
 
     constructor(
-		private readonly _workspaceFolder: string
+		private readonly _workspaceFolder: string,
+        private readonly _extensionPath:string
 	) { 
 	}
 
@@ -28,7 +30,23 @@ export class NetHelper{
             console.log(dotnetRev);
         });
 
+        this.publishTemplateFiles('template01',projectName);
+
         this.openProject(projectName);
+    }
+
+    publishTemplateFiles(templateName: string, projectName: string) {
+        var templatePath = path.join(this._extensionPath ,'resources','templates',templateName);
+        var projectPath = path.join(this._workspaceFolder, projectName);
+
+        var files = fs.readdirSync(templatePath);
+        files.forEach(file => {
+            console.log("Copying file: "+file);
+            var src = path.join(templatePath, file);
+            var dest = path.join(projectPath, file);
+            fs.copyFileSync( src, dest);
+        });
+        
     }
 
 
@@ -44,7 +62,7 @@ export class NetHelper{
             return "Folder "+folder+" is taken.";
         }
 
-        // ok
+        // if result is undefined then validation is ok
         return undefined;
     }
 
