@@ -10,6 +10,8 @@ export const pluginName:string = 'to-hero';
 export async function activate(context: vscode.ExtensionContext) {
 
 	let pv = new PublicVariables();
+	let nh = new NetHelper(pv.getWorkspace(), context.extensionPath);
+
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand(pluginName+ '.openSandbox', () => 
@@ -28,13 +30,12 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand(pluginName + '.newProject', () => {
-			var nh = new NetHelper(pv.getWorkspace());
+			
 
 			const options: InputBoxOptions={
 				title: "New project name",
 				value: nh.generateFolderName(),
 				validateInput: (a: string)=>{
-					var nh = new NetHelper(pv.getWorkspace());
 					return nh.validateFolder(a);
 				},
 				prompt: "Please provide a name for a new program"
