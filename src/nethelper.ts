@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import path = require('path');
 import { Uri } from 'vscode';
 import { pluginName } from './extension';
+import { copyRecursiveSync, replaceInFile } from './filesystem';
 
 
 export class NetHelper{
@@ -39,14 +40,9 @@ export class NetHelper{
         var templatePath = path.join(this._extensionPath ,'resources','templates',templateName);
         var projectPath = path.join(this._workspaceFolder, projectName);
 
-        var files = fs.readdirSync(templatePath);
-        files.forEach(file => {
-            console.log("Copying file: "+file);
-            var src = path.join(templatePath, file);
-            var dest = path.join(projectPath, file);
-            fs.copyFileSync( src, dest);
+        copyRecursiveSync(templatePath, projectPath, (fileName)=>{
+            replaceInFile(fileName, "NEW-PROJECT-NAME", projectName);
         });
-        
     }
 
 

@@ -36,16 +36,23 @@ export async function activate(context: vscode.ExtensionContext) {
 	);
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand(pluginName + '.newProject', () => {
-			
+		vscode.commands.registerCommand(pluginName+ '.refreshFlags', () => 
+		{
+			pv.setupDotNetFlag();	
+			pv.setupExtensionCSharpFlag();
+			pv.setupSandboxOK();
+		})
+	);
 
+	context.subscriptions.push(
+		vscode.commands.registerCommand(pluginName + '.newProject', () => {
 			const options: InputBoxOptions={
 				title: "New project name",
 				value: nh.generateFolderName(),
 				validateInput: (a: string)=>{
 					return nh.validateFolder(a);
 				},
-				prompt: "Please provide a name for a new program"
+				prompt: "Please provide a name for your new program"
 			};			
 
 			vscode.window.showInputBox(options).then(e=>{
@@ -58,12 +65,10 @@ export async function activate(context: vscode.ExtensionContext) {
 		vscode.window.registerWebviewViewProvider(ProjectsViewProvider.viewType, 
 		new ProjectsViewProvider(context.extensionUri)		
 	));
-
 	
-	pv.setupDotNetFlag();	
-	pv.setupExtensionCSharpFlag();
-	pv.setupSandboxOK();
+	
+	vscode.commands.executeCommand(pluginName+".refreshFlags");
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {};
