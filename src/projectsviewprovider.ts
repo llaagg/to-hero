@@ -38,7 +38,7 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 			switch (data.type) {
 				case 'folderSelcted':
 					{
-						vscode.window.showInformationMessage("folder selcted: "+data.value);
+						vscode.commands.executeCommand(pluginName+".openProject", data.value);
 					}
 					break;
 				case 'newProject':

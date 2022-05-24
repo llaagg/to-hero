@@ -29,6 +29,13 @@ export async function activate(context: vscode.ExtensionContext) {
 	);
 
 	context.subscriptions.push(
+		vscode.commands.registerCommand(pluginName+ '.openProject', (projectName) => 
+		{
+			nh.openProject(projectName);
+		})
+	);
+
+	context.subscriptions.push(
 		vscode.commands.registerCommand(pluginName+ '.refreshFlags', () => 
 		{
 			pv.setupDotNetFlag();	
