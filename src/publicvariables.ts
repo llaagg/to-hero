@@ -32,10 +32,7 @@ export class PublicVariables
         var e = fs.existsSync(ws);
         vscode.commands.executeCommand('setContext', pluginName+'.checkSandboxOk', e);
 	}
-    
-    setupProgress(inprogress:boolean) {
-        vscode.commands.executeCommand('setContext', pluginName+'.inProgress', inprogress);
-	}
+   
 
     async setupWorkspace(folderName:string) {
         await vscode.workspace

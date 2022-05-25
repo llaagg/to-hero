@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import { InputBoxOptions } from 'vscode';
 import { NetHelper } from './nethelper';
-import * as platform from './platformnfo';
 import { ProjectsViewProvider } from './projectsviewprovider';
 import { PublicVariables } from './publicvariables';
 
@@ -42,10 +41,11 @@ export async function activate(context: vscode.ExtensionContext) {
 					location: vscode.ProgressLocation.Notification,
 				},
 				async (progres)=>{
-				
 					pv.setupDotNetFlag();	
 					pv.setupExtensionCSharpFlag();
 					pv.setupSandboxOK();
+
+
 			} );
 		})
 	);

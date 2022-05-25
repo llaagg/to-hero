@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { pluginName } from './extension';
+import { PlatformNfo } from './platformnfo';
 import { ProjectsManager } from './projectsmanager';
 import { PublicVariables } from './publicvariables';
 
@@ -43,9 +44,12 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 					break;
 				case 'newProject':
 					{
-						this._variables.setupProgress(true);
 						vscode.commands.executeCommand(pluginName+".newProject");
-						this._variables.setupProgress(false);
+					}
+					break;
+				case 'openSandbox':
+					{
+						PlatformNfo.openFolder(this._variables.getWorkspace());
 					}
 					break;
 			}
@@ -69,7 +73,7 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 	}
 
 	private renderFolderName() {
-		return '<h1>'+ this._variables.getWorkspace() +'</h1>';
+		return '<span id="open-sandbox">🗀 '+ this._variables.getWorkspace() +'</span>';
 	}
 	
 	private renderToolBar() {
