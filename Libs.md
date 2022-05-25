@@ -23,4 +23,6 @@ npm install --global gulp-cli
 1. change version in package.json
 2. git commit -a -m "new version"
 3. git tag v0.9.5
+5. git push
 4. git push --tags
+
