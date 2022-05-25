@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import { InputBoxOptions } from 'vscode';
 import { NetHelper } from './nethelper';
-import * as platform from './platformnfo';
 import { ProjectsViewProvider } from './projectsviewprovider';
 import { PublicVariables } from './publicvariables';
 
@@ -9,9 +8,9 @@ export const pluginName:string = 'to-hero';
 
 export async function activate(context: vscode.ExtensionContext) {
 
-	let pv = new PublicVariables();
-	let nh = new NetHelper(pv.getWorkspace(), context.extensionPath);
-
+	const pv = new PublicVariables();
+	const nh = new NetHelper(pv.getWorkspace(), context.extensionPath);
+	const projectsView = new ProjectsViewProvider(context.extensionUri);
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand(pluginName+ '.openSandbox', () => 
@@ -23,6 +22,7 @@ export async function activate(context: vscode.ExtensionContext) {
 					{
 						await pv.setupWorkspace(uri[0].fsPath);
 						pv.setupSandboxOK();
+						projectsView.requestRefresh();
 					}
 				});			
 		})
@@ -62,10 +62,8 @@ export async function activate(context: vscode.ExtensionContext) {
 		}));
 
 	context.subscriptions.push(
-		vscode.window.registerWebviewViewProvider(ProjectsViewProvider.viewType, 
-		new ProjectsViewProvider(context.extensionUri)		
-	));
-	
+		vscode.window
+			.registerWebviewViewProvider(ProjectsViewProvider.viewType, projectsView));
 	
 	vscode.commands.executeCommand(pluginName+".refreshFlags");
 }

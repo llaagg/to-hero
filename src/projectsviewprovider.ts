@@ -46,9 +46,17 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 						vscode.commands.executeCommand(pluginName+".newProject");
 					}
 					break;
+				
 			}
 		});
     }
+
+	public requestRefresh() {
+		if (this._view) {
+			this._projectsManager = new ProjectsManager(this._variables.getWorkspace());
+			this._view.webview.html = this._getHtmlForWebview(this._view.webview);
+		}
+	}
 
     private _getHtmlForWebview(webview: vscode.Webview) {
 		const nonce = this.getNonce();
