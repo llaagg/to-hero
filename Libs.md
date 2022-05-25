@@ -18,3 +18,9 @@ nvm use 18.2.0
 npm install -g typescript
 npm install -g vsce
 npm install --global gulp-cli
+
+# Release steps:
+1. change version in package.json
+2. git commit -a -m "new version"
+3. git tag v0.9.5
+4. git push --tags
