@@ -1,8 +1,8 @@
+// https://github.com/Lopla/Pla
+//"Gtk: libgtk-3-0.dll, libgtk-3.so.0, libgtk-3.0.dylib, gtk-3.dll"
+
 using Pla.Lib;
 using SkiaSharp;
-
-
-//"Gtk: libgtk-3-0.dll, libgtk-3.so.0, libgtk-3.0.dylib, gtk-3.dll"
 
 Pla.Gtk.App.PlaMain(new Ctx());
 
