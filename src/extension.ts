@@ -44,8 +44,6 @@ export async function activate(context: vscode.ExtensionContext) {
 					pv.setupDotNetFlag();	
 					pv.setupExtensionCSharpFlag();
 					pv.setupSandboxOK();
-
-
 			} );
 		})
 	);
