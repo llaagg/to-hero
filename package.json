@@ -49,8 +49,7 @@
         "views": {
             "to-hero-manager": [{
                     "id": "to-hero-manager",
-                    "name": "Initialization",
-                    "visibility": "collapsed"
+                    "name": "Initialization"
                 },
                 {
                     "type": "webview",
@@ -59,7 +58,6 @@
                     "when": "to-hero.checkHasDotNet && config.to-hero.sandboxFolder && to-hero.checkHasCSharp"
                 }
             ]
-
         },
         "viewsWelcome": [{
                 "view": "to-hero-manager",

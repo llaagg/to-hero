@@ -18,4 +18,8 @@ export class PlatformNfo {
         
         return ok;
     }
+
+    public static openFolder(folder: string): void{
+        execFile.execFileSync("explorer", [folder]);
+    }
   }

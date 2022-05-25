@@ -45,10 +45,11 @@ export class NetHelper{
         });
     }
 
-
-    public openProject(projectName: string){
-        let newProjectFolder =  Uri.file(path.join(this._workspaceFolder , projectName));
-        vscode.commands.executeCommand("vscode.openFolder", newProjectFolder);
+    public openProject(projectName: string): void{
+        let folderpath = path.join(this._workspaceFolder , projectName);
+        let newProjectFolder =  Uri.file(folderpath);
+        vscode.commands
+            .executeCommand("vscode.openFolder", newProjectFolder);
     }
     
     public validateFolder(folder: string) : (string | undefined)

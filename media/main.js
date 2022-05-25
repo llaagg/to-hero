@@ -20,6 +20,11 @@
             callAction('newProject');
         });
 
+    document.querySelector('#open-sandbox')
+        .addEventListener('click', () => {
+            callAction('openSandbox');
+        });
+
     function folderSelcted(folderName) {
         vscode.postMessage({ type: 'folderSelcted', value: folderName });
     }
