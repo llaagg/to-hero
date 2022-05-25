@@ -35,15 +35,18 @@ export async function activate(context: vscode.ExtensionContext) {
 	);
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand(pluginName+ '.refreshFlags', () => 
+		vscode.commands.registerCommand(pluginName+ '.refreshFlags', async () => 
 		{
-			pv.setupProgress(true);
-			
-			pv.setupDotNetFlag();	
-			pv.setupExtensionCSharpFlag();
-			pv.setupSandboxOK();
-
-			pv.setupProgress(false);
+			await vscode.window.withProgress(
+				{
+					location: vscode.ProgressLocation.Notification,
+				},
+				async (progres)=>{
+				
+					pv.setupDotNetFlag();	
+					pv.setupExtensionCSharpFlag();
+					pv.setupSandboxOK();
+			} );
 		})
 	);
 
