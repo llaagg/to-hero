@@ -12,7 +12,6 @@ export async function activate(context: vscode.ExtensionContext) {
 	let pv = new PublicVariables();
 	let nh = new NetHelper(pv.getWorkspace(), context.extensionPath);
 
-
 	context.subscriptions.push(
 		vscode.commands.registerCommand(pluginName+ '.openSandbox', () => 
 		{
@@ -38,9 +37,13 @@ export async function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand(pluginName+ '.refreshFlags', () => 
 		{
+			pv.setupProgress(true);
+			
 			pv.setupDotNetFlag();	
 			pv.setupExtensionCSharpFlag();
 			pv.setupSandboxOK();
+
+			pv.setupProgress(false);
 		})
 	);
 

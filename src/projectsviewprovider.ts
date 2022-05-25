@@ -43,7 +43,9 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 					break;
 				case 'newProject':
 					{
+						this._variables.setupProgress(true);
 						vscode.commands.executeCommand(pluginName+".newProject");
+						this._variables.setupProgress(false);
 					}
 					break;
 			}

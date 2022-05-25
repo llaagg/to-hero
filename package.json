@@ -50,18 +50,28 @@
             "to-hero-manager": [{
                     "id": "to-hero-manager",
                     "name": "Initialization",
-                    "visibility": "collapsed"
+                    "visibility": "collapsed",
+                    "when": "!to-hero.inProgress"
                 },
                 {
                     "type": "webview",
                     "id": "to-hero.projectsView",
                     "name": "Sandbox",
-                    "when": "to-hero.checkHasDotNet && config.to-hero.sandboxFolder && to-hero.checkHasCSharp"
+                    "when": "to-hero.checkHasDotNet && config.to-hero.sandboxFolder && to-hero.checkHasCSharp && !to-hero.inProgress"
+                },
+                {
+                    "id": "to-hero-progress",
+                    "name": "Processing"
                 }
             ]
 
         },
         "viewsWelcome": [{
+                "view": "to-hero-progress",
+                "contents": "aaaaaaaaaa",
+                "when": "!to-hero.inProgress"
+            },
+            {
                 "view": "to-hero-manager",
                 "contents": "1. Install [.NET SDK](https://dotnet.microsoft.com/en-us/download)",
                 "when": "to-hero.checkHasDotNet == false"
