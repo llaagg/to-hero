@@ -31,7 +31,7 @@ export class NetHelper{
             console.log(dotnetRev);
         });
 
-        this.publishTemplateFiles('template01',projectName);
+        this.publishTemplateFiles('templateHelloWorld',projectName);
 
         this.openProject(projectName);
     }

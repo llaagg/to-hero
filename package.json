@@ -16,7 +16,8 @@
     ],
     "activationEvents": [
         "onView:to-hero-manager",
-        "onCommand:to-hero.newProject"
+        "onCommand:to-hero.newProject",
+        "workspaceContains:**/.to-hero"
     ],
     "main": "./out/extension.js",
     "contributes": {
