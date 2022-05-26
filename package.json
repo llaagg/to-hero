@@ -25,7 +25,8 @@
             "properties": {
                 "to-hero.sandboxFolder": {
                     "type": "string",
-                    "description": "Place where all the project can be found."
+                    "description": "Place where all the project can be found.",
+                    "scope": "machine"
                 }
             }
         }],
