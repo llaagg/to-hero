@@ -20,34 +20,47 @@
     ],
     "main": "./out/extension.js",
     "contributes": {
-        "configuration": [{
-            "title": "From 0 To .net hero",
-            "properties": {
-                "to-hero.sandboxFolder": {
-                    "type": "string",
-                    "description": "Place where all the project can be found."
+        "configuration": [
+            {
+                "title": "From 0 To .net hero",
+                "properties": {
+                    "to-hero.sandboxFolder": {
+                        "type": "string",
+                        "description": "Place where all the project can be found."
+                    }
                 }
             }
-        }],
-        "commands": [{
-            "command": "to-hero.hasDotNet",
-            "title": "Check if dot net is installed"
-        }, {
-            "command": "to-hero.openSandbox",
-            "title": "Change hero sandbox"
-        }, {
-            "command": "to-hero.newProject",
-            "title": "New .NET project done as hero"
-        }],
+        ],
+        "commands": [
+            {
+                "command": "to.hero.i18n",
+                "title": "%to-hero.sayHello.title%"
+            },
+            {
+                "command": "to-hero.hasDotNet",
+                "title": "Check if dot net is installed"
+            },
+            {
+                "command": "to-hero.openSandbox",
+                "title": "Change hero sandbox"
+            },
+            {
+                "command": "to-hero.newProject",
+                "title": "New .NET project done as hero"
+            }
+        ],
         "viewsContainers": {
-            "activitybar": [{
-                "id": "to-hero-manager",
-                "title": "Hero of .Net",
-                "icon": "resources/c_logo.svg"
-            }]
+            "activitybar": [
+                {
+                    "id": "to-hero-manager",
+                    "title": "Hero of .Net",
+                    "icon": "resources/c_logo.svg"
+                }
+            ]
         },
         "views": {
-            "to-hero-manager": [{
+            "to-hero-manager": [
+                {
                     "id": "to-hero-manager",
                     "name": "Initialization"
                 },
@@ -59,7 +72,8 @@
                 }
             ]
         },
-        "viewsWelcome": [{
+        "viewsWelcome": [
+            {
                 "view": "to-hero-manager",
                 "contents": "1. Install [.NET SDK](https://dotnet.microsoft.com/en-us/download)",
                 "when": "to-hero.checkHasDotNet == false"
@@ -115,5 +129,8 @@
         "glob": "^8.0.1",
         "mocha": "^9.2.2",
         "typescript": "^4.6.4"
+    },
+    "dependencies": {
+        "vscode-nls": "^5.0.1"
     }
 }

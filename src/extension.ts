@@ -3,6 +3,10 @@ import { InputBoxOptions } from 'vscode';
 import { NetHelper } from './nethelper';
 import { ProjectsViewProvider } from './projectsviewprovider';
 import { PublicVariables } from './publicvariables';
+import * as nls from 'vscode-nls';
+
+// The example uses the file message format.
+const localize = nls.config({ messageFormat: nls.MessageFormat.file })();
 
 export const pluginName:string = 'to-hero';
 
