@@ -2,7 +2,7 @@
     "name": "to-hero",
     "displayName": "From 0 To .net hero",
     "description": "Sinmple introduction to .net c#",
-    "version": "0.9.5",
+    "version": "0.9.7",
     "publisher": "galcorp",
     "repository": {
         "url": " https://github.com/llaagg/"
@@ -20,19 +20,16 @@
     ],
     "main": "./out/extension.js",
     "contributes": {
-        "configuration": [
-            {
-                "title": "From 0 To .net hero",
-                "properties": {
-                    "to-hero.sandboxFolder": {
-                        "type": "string",
-                        "description": "Place where all the project can be found."
-                    }
+        "configuration": [{
+            "title": "From 0 To .net hero",
+            "properties": {
+                "to-hero.sandboxFolder": {
+                    "type": "string",
+                    "description": "Place where all the project can be found."
                 }
             }
-        ],
-        "commands": [
-            {
+        }],
+        "commands": [{
                 "command": "to.hero.i18n",
                 "title": "%to-hero.sayHello.title%"
             },
@@ -50,17 +47,14 @@
             }
         ],
         "viewsContainers": {
-            "activitybar": [
-                {
-                    "id": "to-hero-manager",
-                    "title": "Hero of .Net",
-                    "icon": "resources/c_logo.svg"
-                }
-            ]
+            "activitybar": [{
+                "id": "to-hero-manager",
+                "title": "Hero of .Net",
+                "icon": "resources/c_logo.svg"
+            }]
         },
         "views": {
-            "to-hero-manager": [
-                {
+            "to-hero-manager": [{
                     "id": "to-hero-manager",
                     "name": "Initialization"
                 },
@@ -72,8 +66,7 @@
                 }
             ]
         },
-        "viewsWelcome": [
-            {
+        "viewsWelcome": [{
                 "view": "to-hero-manager",
                 "contents": "1. Install [.NET SDK](https://dotnet.microsoft.com/en-us/download)",
                 "when": "to-hero.checkHasDotNet == false"
