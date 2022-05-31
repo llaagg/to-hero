@@ -9,8 +9,11 @@
     "to-hero.TwoSandboxSelected": "2. Piaskownica ustawiona ✅ [Zmień](command:to-hero.openSandbox)",
     "to-hero.TreeCsharpPLugin": "3. Zainstaluj dodatek dla języka c#. [Zainstaluj](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)",
     "to-hero.TreeCsharpPLuginOK": "3. Dodatek dla języka c# ✅",
+    "to-hero.Refresh": "[Odśwież](command:to-hero.refreshFlags)",
     "to-hero.Sandbox": "Piaskownica",
-    "to-hero.Initialization": "Inicializacja"
-
+    "to-hero.Initialization": "Inicializacja",
+    "to-hero.newProjectName": "Nazwa projektu",
+    "to-hero.pleaseProvideNewProjectName": "Podaj nazwe dla swojego nowego programu",
+    "to-hero.newProject": "Nowy program"
 
 }

@@ -3,15 +3,12 @@ import { InputBoxOptions } from 'vscode';
 import { NetHelper } from './nethelper';
 import { ProjectsViewProvider } from './projectsviewprovider';
 import { PublicVariables } from './publicvariables';
-
 import { init, localize } from "vscode-nls-i18n";
 
 export const pluginName:string = 'to-hero';
 
 export async function activate(context: vscode.ExtensionContext) {
-	
 	init(context.extensionPath);
-	console.log(localize("say.hello", "world")); // hello world
 
 	const pv = new PublicVariables();
 	const nh = new NetHelper(pv.getWorkspace(), context.extensionPath);
@@ -58,12 +55,12 @@ export async function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand(pluginName + '.newProject', () => {
 			const options: InputBoxOptions={
-				title: "New project name",
+				title: localize("to-hero.newProjectName"),
 				value: nh.generateFolderName(),
 				validateInput: (a: string)=>{
 					return nh.validateFolder(a);
 				},
-				prompt: "Please provide a name for your new program"
+				prompt: localize("to-hero.pleaseProvideNewProjectName")
 			};			
 
 			vscode.window.showInputBox(options).then(e=>{

@@ -9,6 +9,10 @@
     "to-hero.TwoSandboxSelected": "2. Sandbox selected ✅ [Edit](command:to-hero.openSandbox)",
     "to-hero.TreeCsharpPLugin": "3. Plugin for c# language. [Install](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)",
     "to-hero.TreeCsharpPLuginOK": "3. C# extension ✅",
+    "to-hero.Refresh": "[Refresh](command:to-hero.refreshFlags)",
     "to-hero.Sandbox": "Sandbox",
-    "to-hero.Initialization": "Initialization"
+    "to-hero.Initialization": "Initialization",
+    "to-hero.newProjectName": "New project name",
+    "to-hero.pleaseProvideNewProjectName": "Please provide a name for your new program",
+    "to-hero.newProject": "New program"
 }

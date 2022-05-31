@@ -13,7 +13,6 @@ export class PlatformNfo {
         
         rows.forEach(dotnetRev => {
             ok=true;
-            console.log(dotnetRev);
         });
         
         return ok;

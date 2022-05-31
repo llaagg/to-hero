@@ -96,7 +96,7 @@
             },
             {
                 "view": "to-hero-manager",
-                "contents": "[Refresh](command:to-hero.refreshFlags)"
+                "contents": "%to-hero.Refresh%"
             }
         ]
     },

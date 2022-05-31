@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { localize } from 'vscode-nls-i18n';
 import { pluginName } from './extension';
 import { PlatformNfo } from './platformnfo';
 import { ProjectsManager } from './projectsmanager';
@@ -86,7 +87,7 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 	private renderToolBar() {
 		var html:string = '';
 		html += `<div class="flex-container">`;
-		html += `<div class="item"><span id="new-project-button">🐟 new project</span></div>`;
+		html += `<div class="item"><span id="new-project-button">🐟 ` + localize("to-hero.newProject")  + `</span></div>`;
 		html += `</div>`;
 		return html;
 	}
