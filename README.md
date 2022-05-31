@@ -1,3 +1,3 @@
 # to-hero
 
-Plugin to lower the learning cureve for creating .net applications.
+Extension for beginners to start playing with C#
