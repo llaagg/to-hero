@@ -2,7 +2,7 @@
     "name": "to-hero",
     "displayName": "From 0 To .net hero",
     "description": "Sinmple introduction to .net c#",
-    "version": "0.9.5",
+    "version": "0.9.7",
     "publisher": "galcorp",
     "repository": {
         "url": " https://github.com/llaagg/"
@@ -32,15 +32,22 @@
             }
         }],
         "commands": [{
-            "command": "to-hero.hasDotNet",
-            "title": "Check if dot net is installed"
-        }, {
-            "command": "to-hero.openSandbox",
-            "title": "Change hero sandbox"
-        }, {
-            "command": "to-hero.newProject",
-            "title": "New .NET project done as hero"
-        }],
+                "command": "to.hero.i18n",
+                "title": "%to-hero.sayHello.title%"
+            },
+            {
+                "command": "to-hero.hasDotNet",
+                "title": "Check if dot net is installed"
+            },
+            {
+                "command": "to-hero.openSandbox",
+                "title": "Change hero sandbox"
+            },
+            {
+                "command": "to-hero.newProject",
+                "title": "New .NET project done as hero"
+            }
+        ],
         "viewsContainers": {
             "activitybar": [{
                 "id": "to-hero-manager",
@@ -117,5 +124,8 @@
         "glob": "^8.0.1",
         "mocha": "^9.2.2",
         "typescript": "^4.6.4"
+    },
+    "dependencies": {
+        "vscode-nls": "^5.0.1"
     }
 }
