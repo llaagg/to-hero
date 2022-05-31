@@ -3,14 +3,15 @@ import { InputBoxOptions } from 'vscode';
 import { NetHelper } from './nethelper';
 import { ProjectsViewProvider } from './projectsviewprovider';
 import { PublicVariables } from './publicvariables';
-import * as nls from 'vscode-nls';
 
-// The example uses the file message format.
-const localize = nls.config({ messageFormat: nls.MessageFormat.file })();
+import { init, localize } from "vscode-nls-i18n";
 
 export const pluginName:string = 'to-hero';
 
 export async function activate(context: vscode.ExtensionContext) {
+	
+	init(context.extensionPath);
+	console.log(localize("say.hello", "world")); // hello world
 
 	const pv = new PublicVariables();
 	const nh = new NetHelper(pv.getWorkspace(), context.extensionPath);

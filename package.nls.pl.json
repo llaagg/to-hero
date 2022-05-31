@@ -1,0 +1,8 @@
+{
+    "to-hero.sayHello.title": "Hello to-hero - pl",
+    "to-hero.sayBye.title": "Bye to-hero",
+    "say.hello": "cześć {0}",
+
+    "to-hero.OneInstallDotnet": "1. Zainstaluj [.NET SDK](https://dotnet.microsoft.com/en-us/download)",
+    "to-hero.OneDotnetInstalled": "1. Dotnet zainstalowany ✅"
+}
