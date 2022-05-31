@@ -32,10 +32,6 @@
             }
         }],
         "commands": [{
-                "command": "to.hero.i18n",
-                "title": "%to-hero.sayHello.title%"
-            },
-            {
                 "command": "to-hero.hasDotNet",
                 "title": "Check if dot net is installed"
             },
@@ -58,12 +54,12 @@
         "views": {
             "to-hero-manager": [{
                     "id": "to-hero-manager",
-                    "name": "Initialization"
+                    "name": "%to-hero.Initialization%"
                 },
                 {
                     "type": "webview",
                     "id": "to-hero.projectsView",
-                    "name": "Sandbox",
+                    "name": "%to-hero.Sandbox%",
                     "when": "to-hero.checkHasDotNet && config.to-hero.sandboxFolder && to-hero.checkHasCSharp"
                 }
             ]
@@ -80,22 +76,22 @@
             },
             {
                 "view": "to-hero-manager",
-                "contents": "2. Select sandbox.\n[Open Sandbox Folder](command:to-hero.openSandbox)\nThis the place where all your applications will be stored.",
+                "contents": "%to-hero.TwoSelectSandbox%",
                 "when": "!to-hero.checkSandboxOk"
             },
             {
                 "view": "to-hero-manager",
-                "contents": "2. Sandbox selected ✅ [Edit](command:to-hero.openSandbox)",
+                "contents": "%to-hero.TwoSandboxSelected%",
                 "when": "to-hero.checkSandboxOk"
             },
             {
                 "view": "to-hero-manager",
-                "contents": "3. Plugin for c# language. [Install](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)",
+                "contents": "%to-hero.TreeCsharpPLugin%",
                 "when": "!to-hero.checkHasCSharp"
             },
             {
                 "view": "to-hero-manager",
-                "contents": "3. C# extension ✅",
+                "contents": "%to-hero.TreeCsharpPLuginOK%",
                 "when": "to-hero.checkHasCSharp"
             },
             {

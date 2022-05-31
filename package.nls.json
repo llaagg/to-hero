@@ -4,6 +4,11 @@
     "say.hello": "hello {0}",
 
     "to-hero.OneInstallDotnet": "1. Install [.NET SDK](https://dotnet.microsoft.com/en-us/download)",
-    "to-hero.OneDotnetInstalled": "1. Dotnet installed ✅"
-
+    "to-hero.OneDotnetInstalled": "1. Dotnet installed ✅",
+    "to-hero.TwoSelectSandbox": "2. Select sandbox.\n[Open Sandbox Folder](command:to-hero.openSandbox)\nThis the place where all your applications will be stored.",
+    "to-hero.TwoSandboxSelected": "2. Sandbox selected ✅ [Edit](command:to-hero.openSandbox)",
+    "to-hero.TreeCsharpPLugin": "3. Plugin for c# language. [Install](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)",
+    "to-hero.TreeCsharpPLuginOK": "3. C# extension ✅",
+    "to-hero.Sandbox": "Sandbox",
+    "to-hero.Initialization": "Initialization"
 }

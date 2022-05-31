@@ -4,5 +4,13 @@
     "say.hello": "cześć {0}",
 
     "to-hero.OneInstallDotnet": "1. Zainstaluj [.NET SDK](https://dotnet.microsoft.com/en-us/download)",
-    "to-hero.OneDotnetInstalled": "1. Dotnet zainstalowany ✅"
+    "to-hero.OneDotnetInstalled": "1. Dotnet zainstalowany ✅",
+    "to-hero.TwoSelectSandbox": "2. Wybierz folder roboczy.\n[Wybierz folder](command:to-hero.openSandbox)\nMiejsce gdzie znajdziesz twoje programy.",
+    "to-hero.TwoSandboxSelected": "2. Piaskownica ustawiona ✅ [Zmień](command:to-hero.openSandbox)",
+    "to-hero.TreeCsharpPLugin": "3. Zainstaluj dodatek dla języka c#. [Zainstaluj](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)",
+    "to-hero.TreeCsharpPLuginOK": "3. Dodatek dla języka c# ✅",
+    "to-hero.Sandbox": "Piaskownica",
+    "to-hero.Initialization": "Inicializacja"
+
+
 }
