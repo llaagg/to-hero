@@ -1,5 +1,8 @@
 // https://github.com/Lopla/Pla
 //"Gtk: libgtk-3-0.dll, libgtk-3.so.0, libgtk-3.0.dylib, gtk-3.dll"
+//dotnet add package pla.lib
+//dotnet add package pla.gtk
+//dotnet add package gtksharp
 
 using Pla.Lib;
 using SkiaSharp;
