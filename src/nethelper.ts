@@ -3,7 +3,6 @@ import * as execFile from 'child_process';
 import * as fs from 'fs';
 import path = require('path');
 import { Uri } from 'vscode';
-import { pluginName } from './extension';
 import { copyRecursiveSync, replaceInFile } from './filesystem';
 
 
@@ -15,7 +14,7 @@ export class NetHelper{
 	) { 
 	}
 
-    public newProject(projectName: string)
+    public newProject(projectName: string, templateName: string)
     {
         const options: execFile.ExecFileSyncOptions ={
             cwd: this._workspaceFolder
@@ -31,7 +30,7 @@ export class NetHelper{
             console.log(dotnetRev);
         });
 
-        this.publishTemplateFiles('templateHelloWorld',projectName);
+        this.publishTemplateFiles(templateName, projectName);
 
         this.openProject(projectName);
     }

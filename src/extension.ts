@@ -53,7 +53,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	);
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand(pluginName + '.newProject', () => {
+		vscode.commands.registerCommand(pluginName + '.newProject', (templateName) => {
 			const options: InputBoxOptions={
 				title: localize("to-hero.newProjectName"),
 				value: nh.generateFolderName(),
@@ -64,7 +64,7 @@ export async function activate(context: vscode.ExtensionContext) {
 			};			
 
 			vscode.window.showInputBox(options).then(e=>{
-				nh.newProject(e!);
+				nh.newProject(e!, templateName);
 			});
 			
 		}));

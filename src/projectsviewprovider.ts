@@ -45,7 +45,7 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 					break;
 				case 'newProject':
 					{
-						vscode.commands.executeCommand(pluginName+".newProject");
+						vscode.commands.executeCommand(pluginName+".newProject", data.value);
 					}
 					break;
 				case 'openSandbox':
@@ -87,7 +87,7 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 	private renderToolBar() {
 		var html:string = '';
 		html += `<div class="flex-container">`;
-		html += `<div class="item"><span id="new-project-button">🐟 ` + localize("to-hero.newProject")  + `</span></div>`;
+		html += `<div class="item"><span class="new-project-button" projectName="helloWorld">[abc] ` + localize("to-hero.newProject")  + `</span></div>`;
 		html += `</div>`;
 		return html;
 	}

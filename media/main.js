@@ -4,13 +4,14 @@
     document.querySelectorAll('.folder').forEach(function(e) {
         e.addEventListener('click', (element) => {
             var at = element.target.attributes['folderName'].value;
-            folderSelcted(at);
+            callAction('folderSelcted', at);
         });
     });
 
-    document.querySelector('#new-project-button')
-        .addEventListener('click', () => {
-            callAction('newProject');
+    document.querySelector('.new-project-button')
+        .addEventListener('click', (element) => {
+            var at = element.target.attributes['projectName'].value;
+            callAction('newProject', at);
         });
 
     document.querySelector('#open-sandbox')
@@ -18,12 +19,9 @@
             callAction('openSandbox');
         });
 
-    function folderSelcted(folderName) {
-        vscode.postMessage({ type: 'folderSelcted', value: folderName });
-    }
+    function callAction(actionName, args) {
 
-    function callAction(actionName) {
-        vscode.postMessage({ type: actionName });
+        vscode.postMessage({ type: actionName, value: args });
     }
 
 }());
