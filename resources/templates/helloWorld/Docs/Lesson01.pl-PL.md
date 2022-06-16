@@ -1,0 +1,41 @@
+# Lekcja 1 - Konsola
+
+Po załadowaniu nowego programu wciśnij klawisz F5 (czasem w laptopie nie zdziała i trzeba wcisnąć F5+fn)
+
+Po wciśnięciu tego klawisza powinny zacząć przewijać się literki w oknie konsoli (na dole ekranu) i po chwili powinno pojawić się nowe okienko z twoim pierwszym programem.
+
+Jak widzisz na ekranie pojawił się napis:
+`Hello, World!` oraz `READY.`. Gdy wciśniesz klawisz `Enter` na klawiaturze to program zniknie.
+
+Przeanalizujemy kod programu krok po kroku aby zrozumieć co się dzieje. 
+
+Na ekranie są trzy linie, każda z nich kończy się znakiem: `;`.
+Pierwsza linia:
+
+```c#
+Console.WriteLine("Hello, World!");
+```
+Oznacza wywołanie wyświetlenie tekstu `Hello, World!` i przejście kursora do nowej linii.
+
+Podobnie zresztą druga linia - robi dokładnie to samo.
+
+```c#
+Console.WriteLine("READY.");
+```
+
+3 linia prosi o podanie linii tekstu.
+```c#
+var line = Console.ReadLine();
+```
+
+
+
+# Skróty
+## C#
+`Console.WriteLine("Hello, World!");` - wyświetl tekst
+
+`var line = Console.ReadLine();` - wczytaj tekst
+
+## Klawiatura
+F5 - uruchom program
+
