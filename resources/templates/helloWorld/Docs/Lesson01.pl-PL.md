@@ -37,5 +37,5 @@ var line = Console.ReadLine();
 `var line = Console.ReadLine();` - wczytaj tekst
 
 ## Klawiatura
-F5 - uruchom program
+`F5` - uruchom program
 
