@@ -19,7 +19,7 @@ class Ctx : IContext, IControl, IPainter
     {
         return this;
     }
-
+ 
     public IPainter GetPainter()
     {
         return this;

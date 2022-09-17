@@ -75,19 +75,23 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 		html += this.renderFolder();
 		html += '<hr/>';
 		html += this.renderToolBar();
+		
 		html += this.getFooter(webview, nonce);
 
 		return html;
 	}
 
 	private renderFolderName() {
-		return '<span id="open-sandbox">🗀 '+ this._variables.getWorkspace() +'</span>';
+		return '<a class="btn" id="open-sandbox">🗀 '+ this._variables.getWorkspace() +'</a>';
 	}
 	
 	private renderToolBar() {
 		var html:string = '';
 		html += `<div class="flex-container">`;
-		html += `<div class="item"><span class="new-project-button" projectName="helloWorld">[abc] ` + localize("to-hero.newProject")  + `</span></div>`;
+		html += `<div class="item">
+			<a class="new-project-button btn" projectName="helloWorld">[abc] `
+				+ localize("to-hero.newProject")  
+				+ `</a></div>`;
 		html += `</div>`;
 		return html;
 	}
@@ -113,7 +117,7 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 
 	getIcon(label: String) : string
 	{
-		return `<div class="item"><span class="folder" folderName="`+label+`" >🗀 `+label+`</span></div>`;
+		return `<div class="item"><span class="folder" folderName="`+label+`" >`+label+`</span></div>`;
 	}
 
 	getFileReference(webview: vscode.Webview, fName: string){
