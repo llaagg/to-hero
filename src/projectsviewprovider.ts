@@ -93,7 +93,7 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 
 		this._templates.listKeys().forEach(element => {
 			var template = this._templates.get(element);
-			html += `<div class="item"><span class="new-project-button" projectName="`+element+`">`+template.icon+` `+ template.description  + `</span></div>`;
+			html += `<div class="item"><span class="newProjectButton" projectName="`+element+`">`+template.icon+` `+ template.description  + `</span></div>`;
 		});
 
 		html += `</div>`;

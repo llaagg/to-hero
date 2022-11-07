@@ -10,7 +10,7 @@ export class ProjectTemplates {
 
         this.templates.plaUI = new Template();
         this.templates.plaUI.description = "Simple windows application with Skia component";
-        this.templates.plaUI.packages = ["pla.lib", "pla.win", "SkiaSharp"];
+        this.templates.plaUI.packages = ["pla.lib", "pla.gtk"];
         this.templates.plaUI.icon = "[GUI] ";
     } 
 

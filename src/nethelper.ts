@@ -4,34 +4,43 @@ import * as fs from 'fs';
 import path = require('path');
 import { Uri } from 'vscode';
 import { copyRecursiveSync, replaceInFile } from './filesystem';
+import { ProjectTemplates } from './projectTemplates';
 
 export class NetHelper{
 
     constructor(
 		private readonly _workspaceFolder: string,
-        private readonly _extensionPath:string
+        private readonly _extensionPath:string,
+        private readonly _templates: ProjectTemplates
 	) { 
 	}
 
-    public newProject(projectName: string, templateName: string)
-    {
+    public runCommand(command: string, args: string[]) {
         const options: execFile.ExecFileSyncOptions ={
             cwd: this._workspaceFolder
         };
-        
+
         var fileRun = execFile.execFileSync(
-                "dotnet"
-                ,["new", "console", "--name", projectName]
-                ,options
-            );
+            command,
+            args,
+            options
+        );
+                
         var rows = fileRun.toString().split("\n");
-        rows.forEach(dotnetRev => {
-            console.log(dotnetRev);
+        console.log(rows);
+    }
+    
+    public newProject(projectName: string, templateName: string)
+    {
+        this.runCommand("dotnet", ["new", "console", "--name", projectName]);
+        this.publishTemplateFiles(templateName, projectName);
+        
+        var template = this._templates.get(templateName);
+        template.packages?.forEach(e=>{
+            this.runCommand("dotnet",["add", projectName , "package", e]);            
         });
 
-        this.publishTemplateFiles(templateName, projectName);
-
-        this.openProject(projectName);
+        this.openProject(projectName);        
     }
 
     publishTemplateFiles(templateName: string, projectName: string) {

@@ -4,6 +4,7 @@ import { NetHelper } from './nethelper';
 import { ProjectsViewProvider } from './projectsviewprovider';
 import { PublicVariables } from './publicvariables';
 import { init, localize } from "vscode-nls-i18n";
+import { ProjectTemplates } from './projectTemplates';
 
 export const pluginName:string = 'to-hero';
 
@@ -11,7 +12,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	init(context.extensionPath);
 
 	const pv = new PublicVariables();
-	const nh = new NetHelper(pv.getWorkspace(), context.extensionPath);
+	const nh = new NetHelper(pv.getWorkspace(), context.extensionPath, new ProjectTemplates());
 	const projectsView = new ProjectsViewProvider(context.extensionUri);
 
 	context.subscriptions.push(
