@@ -8,7 +8,7 @@
         });
     });
 
-    document.querySelector('.new-project-button')
+    document.querySelector('#new-project-button')
         .addEventListener('click', (element) => {
             var at = element.target.attributes['projectName'].value;
             callAction('newProject', at);

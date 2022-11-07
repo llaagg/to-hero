@@ -3,6 +3,7 @@ import { localize } from 'vscode-nls-i18n';
 import { pluginName } from './extension';
 import { PlatformNfo } from './platformnfo';
 import { ProjectsManager } from './projectsmanager';
+import { ProjectTemplates } from './projectTemplates';
 import { PublicVariables } from './publicvariables';
 
 export class ProjectsViewProvider implements vscode.WebviewViewProvider {
@@ -11,12 +12,14 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 	public static readonly viewType = 'to-hero.projectsView';
 	private _variables: PublicVariables;
 	private _projectsManager: ProjectsManager;
+	private _templates: ProjectTemplates;
 
     constructor(
 		private readonly _extensionUri: vscode.Uri
 	) { 
 		this._variables = new PublicVariables();
 		this._projectsManager = new ProjectsManager(this._variables.getWorkspace());
+		this._templates = new ProjectTemplates();
 	}
 
     resolveWebviewView(
@@ -87,7 +90,12 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 	private renderToolBar() {
 		var html:string = '';
 		html += `<div class="flex-container">`;
-		html += `<div class="item"><span class="new-project-button" projectName="helloWorld">[abc] ` + localize("to-hero.newProject")  + `</span></div>`;
+
+		this._templates.listKeys().forEach(element => {
+			var template = this._templates.get(element);
+			html += `<div class="item"><span class="new-project-button" projectName="`+element+`">`+template.icon+` `+ template.description  + `</span></div>`;
+		});
+
 		html += `</div>`;
 		return html;
 	}

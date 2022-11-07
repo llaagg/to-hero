@@ -5,7 +5,6 @@ import path = require('path');
 import { Uri } from 'vscode';
 import { copyRecursiveSync, replaceInFile } from './filesystem';
 
-
 export class NetHelper{
 
     constructor(
