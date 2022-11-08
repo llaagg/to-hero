@@ -12,6 +12,9 @@ export async function activate(context: vscode.ExtensionContext) {
 	init(context.extensionPath);
 
 	const pv = new PublicVariables();
+
+	pv.setupFlag(pv.flagInitializationInProgress, true);
+
 	const nh = new NetHelper(pv.getWorkspace(), context.extensionPath, new ProjectTemplates());
 	const projectsView = new ProjectsViewProvider(context.extensionUri);
 
@@ -75,6 +78,8 @@ export async function activate(context: vscode.ExtensionContext) {
 			.registerWebviewViewProvider(ProjectsViewProvider.viewType, projectsView));
 	
 	vscode.commands.executeCommand(pluginName+".refreshFlags");
+
+	pv.setupFlag(pv.flagInitializationInProgress, true);
 }
 
 // this method is called when your extension is deactivated

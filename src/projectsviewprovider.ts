@@ -75,9 +75,9 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 		html += this.getHeader(webview, nonce);
 		html += this.renderFolderName();
 		html += '<hr/>';
-		html += this.renderFolder();
-		html += '<hr/>';
 		html += this.renderToolBar();
+		html += '<hr/>';
+		html += this.renderFolder();
 		html += this.getFooter(webview, nonce);
 
 		return html;

@@ -5,17 +5,24 @@ import { PlatformNfo } from "./platformnfo";
 
 const fs = require("fs");
 
+
 export class PublicVariables
 {
 	p: PlatformNfo = new PlatformNfo();
     
+    flagInitializationInProgress = `flagInitializationInProgress`;
+
     constructor() {}
 
     setupDotNetFlag(){
         let checkHasDotNet = this.p.hasDotNet();
-        vscode.commands.executeCommand('setContext', pluginName+'.checkHasDotNet', checkHasDotNet);
+        this.setupFlag('checkHasDotNet', checkHasDotNet);
     }   
         
+    setupFlag(name:string, flag: boolean){
+        vscode.commands.executeCommand('setContext', pluginName+'.'+name, flag);
+    }
+
 	setupExtensionCSharpFlag() {
 		var extension = vscode.extensions.getExtension("ms-dotnettools.csharp");
         let hasExtension = false;
