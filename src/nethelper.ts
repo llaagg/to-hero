@@ -15,7 +15,8 @@ export class NetHelper{
 	) { 
 	}
 
-    public runCommand(command: string, args: string[]) {
+    public runCommand(command: string, args: string[], progress: 
+        vscode.Progress<{ message?: string; increment?: number }>): void {
         const options: execFile.ExecFileSyncOptions ={
             cwd: this._workspaceFolder
         };
@@ -28,19 +29,33 @@ export class NetHelper{
                 
         var rows = fileRun.toString().split("\n");
         console.log(rows);
+        if(progress)
+        {
+            rows.forEach(element => {
+                progress.report({message: element});
+            });
+        }
     }
     
-    public newProject(projectName: string, templateName: string)
+    public newProject(projectName: string, templateName: string, progress: 
+        vscode.Progress<{ message?: string; increment?: number }>)
     {
-        this.runCommand("dotnet", ["new", "console", "--name", projectName]);
+        progress.report({message: "Loading template"});
+        var template = this._templates.get(templateName);
+
+        progress.report({message: "Creating new dotnet project: "+template.netType});
+        this.runCommand("dotnet", ["new", template.netType, "--name", projectName], progress);
+
+        progress.report({message: "Copying template files"});
         this.publishTemplateFiles(templateName, projectName);
         
-        var template = this._templates.get(templateName);
         template.packages?.forEach(e=>{
-            this.runCommand("dotnet",["add", projectName , "package", e]);            
+            progress.report({message: "Installing: "+e});
+            this.runCommand("dotnet",["add", projectName , "package", e], progress);            
         });
 
-        this.openProject(projectName);        
+        progress.report({message: "Loading project: " + projectName});
+        //this.openProject(projectName);        
     }
 
     publishTemplateFiles(templateName: string, projectName: string) {

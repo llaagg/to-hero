@@ -39,6 +39,5 @@ export var copyRecursiveSync = (src: string, dest: string, worker: FileWorker) =
 export function replaceInFile(fileName: string, toFind: string, toReplace: string) {
     const data = fs.readFileSync(fileName, {encoding:'utf8', flag:'r'});
     const result = data.replace(toFind, toReplace);
-    fs.writeFileSync(fileName, result, 'utf8');
-    
+    fs.writeFileSync(fileName, result, 'utf8');    
 }

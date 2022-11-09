@@ -6,12 +6,19 @@ export class ProjectTemplates {
     constructor(){
         this.templates.helloWorld = new Template();
         this.templates.helloWorld.description = "Text console application";
-        this.templates.helloWorld.icon = "[abc] ";
+        this.templates.helloWorld.icon = "[C:\\] ";
 
-        this.templates.plaUI = new Template();
-        this.templates.plaUI.description = "Application with Graphical User Interface";
-        this.templates.plaUI.packages = ["pla.lib", "pla.gtk"];
-        this.templates.plaUI.icon = "[GUI] ";
+        this.templates.plaUiWin = new Template();
+        this.templates.plaUiWin.netType = "winforms";
+        this.templates.plaUiWin.description = "Windows Application with Graphical User Interface";
+        this.templates.plaUiWin.packages = ["pla.lib", "pla.win"];
+        this.templates.plaUiWin.icon = "[GUI] ";
+
+        this.templates.plaUiGtk = new Template();
+        this.templates.plaUiGtk.description = "Application with Graphical User Interface";
+        this.templates.plaUiGtk.packages = ["pla.lib", "pla.gtk"];
+        this.templates.plaUiGtk.icon = "[GUI] ";
+
     } 
 
     public listKeys() : string[]
