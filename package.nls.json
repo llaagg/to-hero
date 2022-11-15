@@ -14,5 +14,9 @@
     "to-hero.Initialization": "Initialization",
     "to-hero.newProjectName": "New project name",
     "to-hero.pleaseProvideNewProjectName": "Please provide a name for your new program",
-    "to-hero.newProject": "New program"
+    "to-hero.newProject": "New program",
+    "to-hero.creatingNewProject": "New program",
+    "to-hero.createNewProject0": "Creating new project type: {0}",
+    "to-hero.copyingStaticFiles": "Copy static files",
+    "to-hero.installingPackage0": "Adding package {0}"
 }

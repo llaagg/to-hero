@@ -28,26 +28,21 @@ export class NetHelper{
         };
         
         var cmd = command + ' '+ args.join(' ');
-        
-        progress.report({message: cmd});
 
         try{
             const { error, stdout, stderr } = await exec(cmd, opt);
 
-            this.showProgressFromArray(stdout, progress);
+            //this.showProgressFromArray(stdout, progress);
             
             if(stderr)
             {
-                
-	            localize("");
-
-                this.showprogress("Error", progress);
-                this.showProgressFromArray(stderr, progress);
+                this.showprogress(localize("to-hero.error"), progress);
+                //this.showProgressFromArray(stderr, progress);
             }
         }catch(e: any)
         {
             const msg = e.message;
-            this.showprogress("Error: " + msg, progress);
+            //this.showprogress(localize("to-hero.error")+": " + msg, progress);
             return false;
         }
 
@@ -65,35 +60,39 @@ export class NetHelper{
         });
     }
 
+    showprogressL18N(line:string, progress: vscode.Progress<{ message?: string; increment?: number }>, ...args: string[])
+    {
+        const msg = localize("to-hero."+line, ...args);
+        this.showprogress(msg, progress);
+    }
+
     showprogress(line:string, progress: vscode.Progress<{ message?: string; increment?: number }>)
     {
         console.log( line);
         progress.report({message: line });
-
     }
 
     public async newProject(projectName: string, templateName: string, progress: 
         vscode.Progress<{ message?: string; increment?: number }>)
     {
-        this.showprogress( "Loading template", progress);
         var template = this._templates.get(templateName);
 
-        this.showprogress(  "Creating new dotnet project: "+template.netType, progress);
+        this.showprogressL18N( 'createNewProject0'
+                            , progress, template.netType);
 
         await this.runCommand("dotnet", ["new", template.netType, "--name", projectName], progress);
 
-        this.showprogress(  "Coping static files ",progress);
+        this.showprogressL18N(  "copyingStaticFiles",progress);
         this.publishTemplateFiles(templateName, projectName);
         
         if(template.packages)
         {
             for await (const e of template.packages) {
-                this.showprogress(   "Installing: " + e , progress);
+                this.showprogressL18N(   "installingPackage0" , progress, e);
                 await this.runCommand("dotnet", ["add", projectName, "package", e], progress);
             }
         }
 
-        this.showprogress("Loading project: " + projectName, progress);
         this.openProject(projectName);
 
     }

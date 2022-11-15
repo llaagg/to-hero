@@ -21,7 +21,7 @@ export function newProject(
 
     // let's ask user
     vscode.window.showInputBox(options).then(async e=>{
-        await startWithProgress("Create new project",async (progressIndicator)=>{
+        await startWithProgress(localize('to-hero.creatingNewProject'),async (progressIndicator)=>{
             try{
                 await nh.newProject(e!, templateName, progressIndicator);
             }catch(e:any)
