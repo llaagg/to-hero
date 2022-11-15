@@ -1,10 +1,15 @@
 import * as vscode from 'vscode';
 import * as execFile from 'child_process';
+
+const util = require('util');
+const execa = util.promisify(execFile.exec);
+
 import * as fs from 'fs';
 import path = require('path');
 import { Uri } from 'vscode';
 import { copyRecursiveSync, replaceInFile } from './filesystem';
 import { ProjectTemplates } from './projectTemplates';
+import { resolve } from 'path';
 
 export class NetHelper{
 
@@ -15,47 +20,71 @@ export class NetHelper{
 	) { 
 	}
 
-    public runCommand(command: string, args: string[], progress: 
-        vscode.Progress<{ message?: string; increment?: number }>): void {
-        const options: execFile.ExecFileSyncOptions ={
-            cwd: this._workspaceFolder
-        };
+    public async runCommand(command: string, args: string[], progress: 
+        vscode.Progress<{ message?: string; increment?: number }>): Promise<void> {
 
-        var fileRun = execFile.execFileSync(
-            command,
-            args,
-            options
-        );
-                
-        var rows = fileRun.toString().split("\n");
-        console.log(rows);
-        if(progress)
+        const opt: execFile.ExecOptions={
+            cwd: this._workspaceFolder,
+        };
+        
+        var cmd = command + ' '+ args.join(' ');
+        
+        progress.report({message: cmd});
+
+        const { stdout, stderr } = await execa(cmd, opt);
+
+        
+        this.showProgressFromArray(stdout, progress);
+        
+        if(stderr)
         {
-            rows.forEach(element => {
-                progress.report({message: element});
-            });
+            this.showProgressFromArray(stderr, progress);
         }
+
     }
     
-    public newProject(projectName: string, templateName: string, progress: 
+    showProgressFromArray(lines:string, progress: vscode.Progress<{ message?: string; increment?: number }>)
+    {
+
+        lines.split('\n').forEach(element => {
+            if(element!="\r")
+            {
+                this.showprogress(element, progress);
+            }
+        });
+    }
+
+    showprogress(line:string, progress: vscode.Progress<{ message?: string; increment?: number }>)
+    {
+        console.log( line);
+        progress.report({message: line });
+
+    }
+
+    public async newProject(projectName: string, templateName: string, progress: 
         vscode.Progress<{ message?: string; increment?: number }>)
     {
-        progress.report({message: "Loading template"});
+        this.showprogress( "Loading template", progress);
         var template = this._templates.get(templateName);
 
-        progress.report({message: "Creating new dotnet project: "+template.netType});
-        this.runCommand("dotnet", ["new", template.netType, "--name", projectName], progress);
+        this.showprogress(  "Creating new dotnet project: "+template.netType, progress);
 
-        progress.report({message: "Copying template files"});
+        await this.runCommand("dotnet", ["new", template.netType, "--name", projectName], progress);
+
+        this.showprogress(  "Coping static files ",progress);
         this.publishTemplateFiles(templateName, projectName);
         
-        template.packages?.forEach(e=>{
-            progress.report({message: "Installing: "+e});
-            this.runCommand("dotnet",["add", projectName , "package", e], progress);            
-        });
+        if(template.packages)
+        {
+            for await (const e of template.packages) {
+                this.showprogress(   "Installing: " + e , progress);
+                await this.runCommand("dotnet", ["add", projectName, "package", e], progress);
+            }
+        }
 
-        progress.report({message: "Loading project: " + projectName});
-        //this.openProject(projectName);        
+        this.showprogress(    "Loading project: " + projectName, progress);
+        this.openProject(projectName);
+
     }
 
     publishTemplateFiles(templateName: string, projectName: string) {

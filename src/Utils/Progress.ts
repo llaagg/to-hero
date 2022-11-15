@@ -9,33 +9,29 @@ export function startWithProgress(description: string, method: MethodWithProgres
     vscode.commands.executeCommand('to-hero.startTask', description, method);
 }
 
-export async function windowsWithProgress(description: string, taskToDo: MethodWithProgress) {
-
-    await window.withProgress({
+export function windowsWithProgress(description: string, taskToDo: MethodWithProgress) {
+    
+    console.log("Window");
+    window.withProgress({
         location: ProgressLocation.Notification,
         title: description,
         cancellable: true
     }, async (progress, token) => {
-        progress.report({message:"Start", increment: 0 });
-
+        
+        
         token.onCancellationRequested(() => {
             console.log("User canceled the long running operation");
         });
 
-        (async () => {
-            taskToDo(progress);
-        })();
+        let done = false;
 
+        console.log("Task starting");
+        await taskToDo(progress);
+        console.log("Task stoped");
 
-        this progress doesnt work wtf
-        taskToDo(progress);
-
-        const p = new Promise<void>(resolve => {
-            setTimeout(() => {
-                resolve();
-            }, 5000);
-        });
-
-        return p;
+        
     });
+
+    console.log("Window oof");
+
 };
