@@ -11,7 +11,6 @@ export const pluginName:string = 'to-hero';
 
 export async function activate(context: vscode.ExtensionContext) {
 	init(context.extensionPath);
-
 	const pv = new PublicVariables();
 
 	pv.setupFlag(pv.flagInitializationInProgress, true);

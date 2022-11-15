@@ -2,14 +2,14 @@ import * as vscode from 'vscode';
 import * as execFile from 'child_process';
 
 const util = require('util');
-const execa = util.promisify(execFile.exec);
+const exec = util.promisify(execFile.exec);
 
 import * as fs from 'fs';
 import path = require('path');
 import { Uri } from 'vscode';
 import { copyRecursiveSync, replaceInFile } from './filesystem';
 import { ProjectTemplates } from './projectTemplates';
-import { resolve } from 'path';
+import { localize } from 'vscode-nls-i18n';
 
 export class NetHelper{
 
@@ -21,7 +21,7 @@ export class NetHelper{
 	}
 
     public async runCommand(command: string, args: string[], progress: 
-        vscode.Progress<{ message?: string; increment?: number }>): Promise<void> {
+        vscode.Progress<{ message?: string; increment?: number }>): Promise<boolean> {
 
         const opt: execFile.ExecOptions={
             cwd: this._workspaceFolder,
@@ -31,23 +31,34 @@ export class NetHelper{
         
         progress.report({message: cmd});
 
-        const { stdout, stderr } = await execa(cmd, opt);
+        try{
+            const { error, stdout, stderr } = await exec(cmd, opt);
 
-        
-        this.showProgressFromArray(stdout, progress);
-        
-        if(stderr)
+            this.showProgressFromArray(stdout, progress);
+            
+            if(stderr)
+            {
+                
+	            localize("");
+
+                this.showprogress("Error", progress);
+                this.showProgressFromArray(stderr, progress);
+            }
+        }catch(e: any)
         {
-            this.showProgressFromArray(stderr, progress);
+            const msg = e.message;
+            this.showprogress("Error: " + msg, progress);
+            return false;
         }
 
+        return true;
     }
     
     showProgressFromArray(lines:string, progress: vscode.Progress<{ message?: string; increment?: number }>)
     {
 
         lines.split('\n').forEach(element => {
-            if(element!="\r")
+            if(element!=="\r")
             {
                 this.showprogress(element, progress);
             }
@@ -82,7 +93,7 @@ export class NetHelper{
             }
         }
 
-        this.showprogress(    "Loading project: " + projectName, progress);
+        this.showprogress("Loading project: " + projectName, progress);
         this.openProject(projectName);
 
     }
