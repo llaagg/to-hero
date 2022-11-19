@@ -84,7 +84,7 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 	}
 
 	private renderFolderName() {
-		return '<span id="open-sandbox">🗀 '+ this._variables.getWorkspace() +'</span>';
+		return '<a class="btn" id="open-sandbox">🗀 '+ this._variables.getWorkspace() +'</a>';
 	}
 	
 	private renderToolBar() {
@@ -121,7 +121,7 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 
 	getIcon(label: String) : string
 	{
-		return `<div class="item"><span class="folder" folderName="`+label+`" >🗀 `+label+`</span></div>`;
+		return `<div class="item"><span class="folder" folderName="`+label+`" >`+label+`</span></div>`;
 	}
 
 	getFileReference(webview: vscode.Webview, fName: string){
