@@ -11,7 +11,7 @@ export class ProjectTemplates {
 
         this.templates.plaUiWin = new Template();
         this.templates.plaUiWin.netType = "winforms";
-        this.templates.plaUiWin.description = localize("to-hero.windowsApplication");
+        this.templates.plaUiWin.description = localize("to-hero.plaApplication");
         this.templates.plaUiWin.packages = ["pla.lib", "pla.win"];
         this.templates.plaUiWin.icon = "[GUI] ";
 
