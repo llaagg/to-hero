@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { NetHelper } from './nethelper';
 import { ProjectsViewProvider } from './projectsviewprovider';
 import { PublicVariables } from './publicvariables';
-import { init, localize } from "vscode-nls-i18n";
+import { init } from "vscode-nls-i18n";
 import { ProjectTemplates } from './projectTemplates';
 import { newProject } from './Commands/newProject';
 import { windowsWithProgress } from './Utils/Progress';

@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { ExtensionContext, StatusBarAlignment, window, StatusBarItem, Selection, workspace, TextEditor, commands, ProgressLocation, Progress } from 'vscode';
+import { window, ProgressLocation, Progress } from 'vscode';
 
 export interface MethodWithProgress{
     (progress: Progress<{ message?: string; increment?: number }>): void;
