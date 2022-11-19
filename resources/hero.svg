@@ -2,13 +2,16 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="64"
-   height="128"
-   viewBox="0 0 16.933333 33.866668"
+   width="240"
+   height="480"
+   viewBox="0 0 63.499999 127"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
    sodipodi:docname="hero.svg"
+   inkscape:export-filename="C:\Work\Sandbox\to-hero\resources\hero.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,16 +26,16 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="1.8116734"
-     inkscape:cx="39.742262"
-     inkscape:cy="198.71131"
+     inkscape:zoom="0.9058367"
+     inkscape:cx="-146.82558"
+     inkscape:cy="60.717346"
      inkscape:window-width="1702"
      inkscape:window-height="1328"
      inkscape:window-x="861"
      inkscape:window-y="16"
      inkscape:window-maximized="0"
      inkscape:current-layer="g19"
-     width="120px"
+     width="240px"
      units="px" />
   <defs
      id="defs2" />
@@ -46,14 +49,14 @@
          id="g19">
         <path
            id="rect3077"
-           style="fill:#000000;stroke-width:0.0521238"
-           d="M 4.0018799,9.1351294 2.8683554,29.789123 H 5.9956042 V 11.495063 H 5.7107868 v 9.032935 H 4.0018799 Z m 8.7887071,0 V 20.527998 h -1.708906 v -9.032935 h -0.28487 v 18.29406 h 3.234761 z m -6.1316266,0.7522702 0.031608,0.7018054 -0.044822,0.277766 0.1765223,0.628092 0.3386781,0.781212 0.4833857,0.653535 0.7519044,0.413226 0.7518516,-0.413226 0.483439,-0.653535 0.338678,-0.781212 0.1764685,-0.628092 -0.04482,-0.277766 0.03166,-0.7018054 -1.7372729,0.01489 z M 8.1114161,21.545234 v 8.243889 h 0.5695832 v -8.243889 z" />
+           style="fill:#000000;stroke-width:0.221238"
+           d="M 12.645059,31.018015 7.8338383,118.68344 H 21.107379 V 41.034703 h -1.208902 v 38.340098 h -7.253418 z m 37.303478,0 V 79.374801 H 42.695123 V 41.034703 h -1.209125 v 77.648737 h 13.729874 z m -26.025557,3.192995 0.134159,2.978798 -0.190246,1.178971 0.749246,2.665924 1.437511,3.315837 2.051721,2.773915 3.191442,1.753929 3.191218,-1.753929 2.051946,-2.773915 1.437512,-3.315837 0.749016,-2.665924 -0.190237,-1.178971 0.13438,-2.978798 -7.373817,0.0632 z m 6.164917,49.481428 v 34.991002 h 2.417584 V 83.692438 Z" />
         <circle
            id="path31"
-           cx="8.3962173"
-           cy="6.2869482"
-           style="stroke-width:0.0521238"
-           r="2.7261357" />
+           cx="31.29673"
+           cy="18.92897"
+           style="stroke-width:0.221238"
+           r="11.571025" />
       </g>
     </g>
   </g>

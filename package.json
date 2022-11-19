@@ -1,15 +1,17 @@
 {
     "name": "to-hero",
     "displayName": "From 0 To .net hero",
-    "description": "Sinmple introduction to .net c#",
-    "version": "0.9.19",
+    "description": "Extension that allows to setup development enviorment for .net and create some simple projects.",
+    "version": "0.9.20",
     "publisher": "galcorp",
     "repository": {
-        "url": " https://github.com/llaagg/"
+        "type": "git",
+        "url": " https://github.com/llaagg/to-hero"
     },
     "engines": {
         "vscode": "^1.67.0"
     },
+    "icon": "resources/hero.png",
     "categories": [
         "Education",
         "Programming Languages"
