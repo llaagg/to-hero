@@ -14,10 +14,10 @@ export class ProjectTemplates {
         this.templates.plaUiWin.packages = ["pla.lib", "pla.win"];
         this.templates.plaUiWin.icon = "[GUI] ";
 
-        this.templates.plaUiGtk = new Template();
-        this.templates.plaUiGtk.description = "Application with Graphical User Interface";
-        this.templates.plaUiGtk.packages = ["pla.lib", "pla.gtk"];
-        this.templates.plaUiGtk.icon = "[GUI] ";
+        // this.templates.plaUiGtk = new Template();
+        // this.templates.plaUiGtk.description = "Application with Graphical User Interface";
+        // this.templates.plaUiGtk.packages = ["pla.lib", "pla.gtk"];
+        // this.templates.plaUiGtk.icon = "[GUI] ";
 
     } 
 

@@ -5,8 +5,13 @@ Pla.Win.App.PlaMain(new Ctx());
 
 class Ctx : IContext, IControl, IPainter
 {
+    List<SKPoint> points = new List<SKPoint>();
+    private IEngine engine;
+
     public void Click(SKPoint argsLocation)
     {
+        points.Add(argsLocation);
+        engine.RequestRefresh();
     }
 
     public IControl GetControl()
@@ -21,7 +26,7 @@ class Ctx : IContext, IControl, IPainter
 
     public void Init(IEngine engine)
     {
-        
+        this.engine = engine;
     }
 
     public void KeyDown(uint key)
@@ -30,8 +35,14 @@ class Ctx : IContext, IControl, IPainter
 
     public void Paint(SKImageInfo info, SKSurface surface)
     {
-        surface
-            .Canvas
-            .DrawPoint(20,20, new SKPaint());
+        using(var paint =new SKPaint())
+        {
+            foreach(var p in this.points)
+            {
+                surface
+                    .Canvas
+                    .DrawCircle(p, 10, paint);
+            }
+        }
     }
 }
