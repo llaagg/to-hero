@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 import { InputBoxOptions } from "vscode";
-import { init, localize } from "vscode-nls-i18n";
+import { localize } from "vscode-nls-i18n";
 import { NetHelper } from '../nethelper';
-import { MethodWithProgress, startWithProgress } from '../Utils/Progress';
+import { startWithProgress } from '../Utils/Progress';
 
 export function newProject(
     templateName: any, 
