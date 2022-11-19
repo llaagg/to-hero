@@ -19,7 +19,7 @@
     "activationEvents": [
         "onView:to-hero-manager",
         "onCommand:to-hero.newProject",
-        "workspaceContains:**/.to-hero"
+        "workspaceContains:Program.cs"
     ],
     "main": "./out/extension.js",
     "contributes": {
@@ -62,7 +62,7 @@
                     "type": "webview",
                     "id": "to-hero.projectsView",
                     "name": "%to-hero.Sandbox%",
-                    "when": "to-hero.checkHasDotNet && config.to-hero.sandboxFolder && to-hero.checkHasCSharp && to-hero.flagInitializationInProgress"
+                    "when": "to-hero.checkHasDotNet && config.to-hero.sandboxFolder && to-hero.checkHasCSharp && !to-hero.flagInitializationInProgress"
                 }
             ]
         },
@@ -74,37 +74,37 @@
             {
                 "view": "to-hero-manager",
                 "contents": "%to-hero.OneInstallDotnet%",
-                "when": "to-hero.checkHasDotNet == false && to-hero.flagInitializationInProgress"
+                "when": "to-hero.checkHasDotNet == false && !to-hero.flagInitializationInProgress"
             },
             {
                 "view": "to-hero-manager",
                 "contents": "%to-hero.OneDotnetInstalled%",
-                "when": "to-hero.checkHasDotNet && to-hero.flagInitializationInProgress"
+                "when": "to-hero.checkHasDotNet && !to-hero.flagInitializationInProgress"
             },
             {
                 "view": "to-hero-manager",
                 "contents": "%to-hero.TwoSelectSandbox%",
-                "when": "!to-hero.checkSandboxOk && to-hero.flagInitializationInProgress"
+                "when": "!to-hero.checkSandboxOk && !to-hero.flagInitializationInProgress"
             },
             {
                 "view": "to-hero-manager",
                 "contents": "%to-hero.TwoSandboxSelected%",
-                "when": "to-hero.checkSandboxOk && to-hero.flagInitializationInProgress"
+                "when": "to-hero.checkSandboxOk && !to-hero.flagInitializationInProgress"
             },
             {
                 "view": "to-hero-manager",
                 "contents": "%to-hero.TreeCsharpPLugin%",
-                "when": "!to-hero.checkHasCSharp && to-hero.flagInitializationInProgress"
+                "when": "!to-hero.checkHasCSharp && !to-hero.flagInitializationInProgress"
             },
             {
                 "view": "to-hero-manager",
                 "contents": "%to-hero.TreeCsharpPLuginOK%",
-                "when": "to-hero.checkHasCSharp && to-hero.flagInitializationInProgress"
+                "when": "to-hero.checkHasCSharp && !to-hero.flagInitializationInProgress"
             },
             {
                 "view": "to-hero-manager",
                 "contents": "%to-hero.Refresh%",
-                "when": "to-hero.flagInitializationInProgress"
+                "when": "!to-hero.flagInitializationInProgress"
             }
         ]
     },

@@ -10,19 +10,24 @@ export class PublicVariables
 {
 	p: PlatformNfo = new PlatformNfo();
     
+    flagCheckHasDotNet:string = "checkHasDotNet";
+    flagCheckHasCSharp:string = "checkHasCSharp";
+    flagCheckSandboxOk:string = "checkSandboxOk";
+	flagCheckAllOk:string = "allOk";
+    
     flagInitializationInProgress = `flagInitializationInProgress`;
 
     constructor() {}
 
-    setupDotNetFlag(){
-        let checkHasDotNet = this.p.hasDotNet();
-        this.setupFlag('checkHasDotNet', checkHasDotNet);
-    }   
-        
     setupFlag(name:string, flag: boolean){
         vscode.commands.executeCommand('setContext', pluginName+'.'+name, flag);
     }
 
+    setupDotNetFlag(){
+        let checkHasDotNet = this.p.hasDotNet();
+        this.setupFlag(this.flagCheckHasDotNet, checkHasDotNet);
+    }   
+    
 	setupExtensionCSharpFlag() {
 		var extension = vscode.extensions.getExtension("ms-dotnettools.csharp");
         let hasExtension = false;
@@ -31,22 +36,22 @@ export class PublicVariables
             hasExtension = true;
         }
 
-        vscode.commands.executeCommand('setContext', pluginName+'.checkHasCSharp', hasExtension);
+        this.setupFlag(this.flagCheckHasCSharp, hasExtension);
 	}
 
     setupSandboxOK() {
 		var ws = this.getWorkspace();
         var e = fs.existsSync(ws);
-        vscode.commands.executeCommand('setContext', pluginName+'.checkSandboxOk', e);
+        this.setupFlag(this.flagCheckSandboxOk, e);
 	}
    
-
     async setupWorkspace(folderName:string) {
         await vscode.workspace
             .getConfiguration()
             .update(pluginName+ ".sandboxFolder", folderName, vscode.ConfigurationTarget.Global);
 	}
 
+    /// returns user settings with sandbox
     getWorkspace(): string
     {
         let settingsValue =  vscode.workspace

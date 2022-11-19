@@ -93,7 +93,7 @@ export class NetHelper{
             }
         }
 
-        this.openProject(projectName);
+        await this.openProject(projectName, "Program.cs");
 
     }
 
@@ -106,11 +106,17 @@ export class NetHelper{
         });
     }
 
-    public openProject(projectName: string): void{
+    public async openProject(projectName: string, file: string|null = null): Promise<void>{
         let folderpath = path.join(this._workspaceFolder , projectName);
-        let newProjectFolder =  Uri.file(folderpath);
-        vscode.commands
-            .executeCommand("vscode.openFolder", newProjectFolder);
+
+        let newProjectFolder =  vscode.Uri.file(folderpath);
+        await  vscode.commands.executeCommand("vscode.openFolder",  newProjectFolder);
+       
+        if(file!==null)
+        {
+            let filePath =  vscode.Uri.file(path.join(folderpath,  "Program.cs"));
+            await  vscode.commands.executeCommand("vscode.open",  filePath);
+        }
     }
     
     public validateFolder(folder: string) : (string | undefined)
