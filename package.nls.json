@@ -18,5 +18,7 @@
     "to-hero.creatingNewProject": "New program",
     "to-hero.createNewProject0": "Creating new project type: {0}",
     "to-hero.copyingStaticFiles": "Copy static files",
-    "to-hero.installingPackage0": "Adding package {0}"
+    "to-hero.installingPackage0": "Adding package {0}",
+    "to-hero.windowsApplication": "New windows Application with Graphical User Interface",
+    "to-hero.consoleApp": "New text console application"
 }

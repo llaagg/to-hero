@@ -1,3 +1,4 @@
+import { localize } from "vscode-nls-i18n";
 import { Template } from "./Models/template";
 
 export class ProjectTemplates {
@@ -5,12 +6,12 @@ export class ProjectTemplates {
 
     constructor(){
         this.templates.helloWorld = new Template();
-        this.templates.helloWorld.description = "Text console application";
+        this.templates.helloWorld.description = localize("to-hero.consoleApp");
         this.templates.helloWorld.icon = "[C:\\] ";
 
         this.templates.plaUiWin = new Template();
         this.templates.plaUiWin.netType = "winforms";
-        this.templates.plaUiWin.description = "Windows Application with Graphical User Interface";
+        this.templates.plaUiWin.description = localize("to-hero.windowsApplication");
         this.templates.plaUiWin.packages = ["pla.lib", "pla.win"];
         this.templates.plaUiWin.icon = "[GUI] ";
 

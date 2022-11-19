@@ -48,7 +48,7 @@
             "activitybar": [{
                 "id": "to-hero-manager",
                 "title": "Hero of .Net",
-                "icon": "resources/c_logo.svg"
+                "icon": "resources/hero.svg"
             }]
         },
         "views": {

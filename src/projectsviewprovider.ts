@@ -84,16 +84,19 @@ export class ProjectsViewProvider implements vscode.WebviewViewProvider {
 	}
 
 	private renderFolderName() {
-		return '<a class="btn" id="open-sandbox">🗀 '+ this._variables.getWorkspace() +'</a>';
+		return '<a class="btn wide" id="open-sandbox">🗀 '+ this._variables.getWorkspace() +'</a>';
 	}
 	
 	private renderToolBar() {
 		var html:string = '';
-		html += `<div class="flex-container">`;
+		html += `<div class="btn-container">`;
 
 		this._templates.listKeys().forEach(element => {
 			var template = this._templates.get(element);
-			html += `<div class="item"><span class="newProjectButton" projectName="`+element+`">`+template.icon+` `+ template.description  + `</span></div>`;
+			html += 
+			`<div class="item">`+
+			`<a class="btn newProjectButton" projectName="`+element+`">`+template.icon+`<br/>`+template.description  + `</a>`+
+			`</div>`;
 		});
 
 		html += `</div>`;

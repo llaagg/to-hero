@@ -18,6 +18,7 @@
     "to-hero.creatingNewProject": "Nowy projekt",
     "to-hero.createNewProject0": "Tworzenie nowego programu typu: {0}",
     "to-hero.copyingStaticFiles": "Kopiowanie dodatkowych plików",
-    "to-hero.installingPackage0": "Dodawanie bibiloteki {0}"
-
+    "to-hero.installingPackage0": "Dodawanie bibiloteki {0}",
+    "to-hero.windowsApplication": "Nowa aplikacja windows z Interfejsem Użytkownika",
+    "to-hero.consoleApp": "Nowa aplikacja tekstowa"
 }

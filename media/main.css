@@ -21,7 +21,6 @@ div.item {
 a.btn {
     box-sizing: border-box;
     display: flex;
-    width: 100%;
     padding: 4px;
     text-align: center;
     cursor: pointer;
@@ -29,4 +28,31 @@ a.btn {
     align-items: center;
     color: rgb(255, 255, 255);
     background-color: rgb(14, 99, 156);
+}
+
+a.wide {
+    width: 100%;
+}
+
+a.btn:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(17, 119, 187);
+}
+
+.btn-container {
+    display: flex;
+    gap: 10px;
+    gap: 10px 20px;
+    row-gap: 10px;
+    column-gap: 20px;
+}
+
+.btn-container.item {
+    margin: 10px;
+    padding: 0px;
+}
+
+.btn-container>a {
+    margin: 0px;
+    padding: 10px;
 }

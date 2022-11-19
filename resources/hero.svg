@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="hero.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.45291836"
+     inkscape:cx="117.01888"
+     inkscape:cy="518.85731"
+     inkscape:window-width="1702"
+     inkscape:window-height="1328"
+     inkscape:window-x="861"
+     inkscape:window-y="16"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g19" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Warstwa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g4631">
+      <g
+         id="g19">
+        <path
+           id="rect3077"
+           style="fill:#000000;stroke-width:1.94875"
+           d="M 233.16406 263.81445 L 190.78516 1036.002 L 307.70312 1036.002 L 307.70312 352.04492 L 297.05469 352.04492 L 297.05469 689.75781 L 233.16406 689.75781 L 233.16406 263.81445 z M 561.74609 263.81445 L 561.74609 689.75781 L 497.85547 689.75781 L 497.85547 352.04492 L 487.20508 352.04492 L 487.20508 1036.002 L 608.14258 1036.002 L 561.74609 263.81445 z M 332.50391 291.93945 L 333.68555 318.17773 L 332.00977 328.5625 L 338.60938 352.04492 L 351.27148 381.25195 L 369.34375 405.68555 L 397.45508 421.13477 L 425.56445 405.68555 L 443.63867 381.25195 L 456.30078 352.04492 L 462.89844 328.5625 L 461.22266 318.17773 L 462.40625 291.93945 L 397.45508 292.49609 L 332.50391 291.93945 z M 386.80664 727.78906 L 386.80664 1036.002 L 408.10156 1036.002 L 408.10156 727.78906 L 386.80664 727.78906 z "
+           transform="scale(0.26458333)" />
+        <circle
+           id="path31"
+           cx="105.15983"
+           cy="41.626884"
+           r="26.966757"
+           style="stroke-width:0.515606" />
+      </g>
+    </g>
+  </g>
+</svg>
