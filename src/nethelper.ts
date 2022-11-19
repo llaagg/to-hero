@@ -1,38 +1,101 @@
 import * as vscode from 'vscode';
 import * as execFile from 'child_process';
+
+const util = require('util');
+const exec = util.promisify(execFile.exec);
+
 import * as fs from 'fs';
 import path = require('path');
 import { Uri } from 'vscode';
 import { copyRecursiveSync, replaceInFile } from './filesystem';
-
+import { ProjectTemplates } from './projectTemplates';
+import { localize } from 'vscode-nls-i18n';
 
 export class NetHelper{
 
     constructor(
 		private readonly _workspaceFolder: string,
-        private readonly _extensionPath:string
+        private readonly _extensionPath:string,
+        private readonly _templates: ProjectTemplates
 	) { 
 	}
 
-    public newProject(projectName: string, templateName: string)
-    {
-        const options: execFile.ExecFileSyncOptions ={
-            cwd: this._workspaceFolder
+    public async runCommand(command: string, args: string[], progress: 
+        vscode.Progress<{ message?: string; increment?: number }>): Promise<boolean> {
+
+        const opt: execFile.ExecOptions={
+            cwd: this._workspaceFolder,
         };
         
-        var fileRun = execFile.execFileSync(
-                "dotnet"
-                ,["new", "console", "--name", projectName]
-                ,options
-            );
-        var rows = fileRun.toString().split("\n");
-        rows.forEach(dotnetRev => {
-            console.log(dotnetRev);
+        var cmd = command + ' '+ args.join(' ');
+        
+        progress.report({message: cmd});
+
+        try{
+            const { error, stdout, stderr } = await exec(cmd, opt);
+
+            this.showProgressFromArray(stdout, progress);
+            
+            if(stderr)
+            {
+                
+	            localize("");
+
+                this.showprogress("Error", progress);
+                this.showProgressFromArray(stderr, progress);
+            }
+        }catch(e: any)
+        {
+            const msg = e.message;
+            this.showprogress("Error: " + msg, progress);
+            return false;
+        }
+
+        return true;
+    }
+    
+    showProgressFromArray(lines:string, progress: vscode.Progress<{ message?: string; increment?: number }>)
+    {
+
+        lines.split('\n').forEach(element => {
+            if(element!=="\r")
+            {
+                this.showprogress(element, progress);
+            }
         });
+    }
 
+    showprogress(line:string, progress: vscode.Progress<{ message?: string; increment?: number }>)
+    {
+        console.log( line);
+        progress.report({message: line });
+
+    }
+
+    public async newProject(projectName: string, templateName: string, progress: 
+        vscode.Progress<{ message?: string; increment?: number }>)
+    {
+        this.showprogress( "Loading template", progress);
+        var template = this._templates.get(templateName);
+
+        this.showprogress(  "Creating new dotnet project: "+template.netType, progress);
+
+        await this.runCommand("dotnet", ["new", template.netType, "--name", projectName], progress);
+
+        this.showprogress(  "Coping static files ",progress);
         this.publishTemplateFiles(templateName, projectName);
+        
+        if(template.packages)
+        {
+            for await (const e of template.packages) {
+                this.showprogress(   "Installing: " + e , progress);
+                await this.runCommand("dotnet", ["add", projectName, "package", e], progress);
+            }
+        }
 
+        this.showprogress("Loading project: " + projectName, progress);
         this.openProject(projectName);
+
     }
 
     publishTemplateFiles(templateName: string, projectName: string) {

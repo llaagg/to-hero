@@ -1,9 +1,0 @@
-{
-    "plaUI": {
-        "name": "Windows",
-        "packages": ["pla.lib", "pla.win", "SkiaSharp"]
-    },
-    "helloWorld": {
-        "name": "Text"
-    }
-}

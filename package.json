@@ -60,43 +60,49 @@
                     "type": "webview",
                     "id": "to-hero.projectsView",
                     "name": "%to-hero.Sandbox%",
-                    "when": "to-hero.checkHasDotNet && config.to-hero.sandboxFolder && to-hero.checkHasCSharp"
+                    "when": "to-hero.checkHasDotNet && config.to-hero.sandboxFolder && to-hero.checkHasCSharp && to-hero.flagInitializationInProgress"
                 }
             ]
         },
         "viewsWelcome": [{
                 "view": "to-hero-manager",
+                "contents": "%to-hero.Initialization%",
+                "when": "to-hero.flagInitializationInProgress"
+            },
+            {
+                "view": "to-hero-manager",
                 "contents": "%to-hero.OneInstallDotnet%",
-                "when": "to-hero.checkHasDotNet == false"
+                "when": "to-hero.checkHasDotNet == false && to-hero.flagInitializationInProgress"
             },
             {
                 "view": "to-hero-manager",
                 "contents": "%to-hero.OneDotnetInstalled%",
-                "when": "to-hero.checkHasDotNet"
+                "when": "to-hero.checkHasDotNet && to-hero.flagInitializationInProgress"
             },
             {
                 "view": "to-hero-manager",
                 "contents": "%to-hero.TwoSelectSandbox%",
-                "when": "!to-hero.checkSandboxOk"
+                "when": "!to-hero.checkSandboxOk && to-hero.flagInitializationInProgress"
             },
             {
                 "view": "to-hero-manager",
                 "contents": "%to-hero.TwoSandboxSelected%",
-                "when": "to-hero.checkSandboxOk"
+                "when": "to-hero.checkSandboxOk && to-hero.flagInitializationInProgress"
             },
             {
                 "view": "to-hero-manager",
                 "contents": "%to-hero.TreeCsharpPLugin%",
-                "when": "!to-hero.checkHasCSharp"
+                "when": "!to-hero.checkHasCSharp && to-hero.flagInitializationInProgress"
             },
             {
                 "view": "to-hero-manager",
                 "contents": "%to-hero.TreeCsharpPLuginOK%",
-                "when": "to-hero.checkHasCSharp"
+                "when": "to-hero.checkHasCSharp && to-hero.flagInitializationInProgress"
             },
             {
                 "view": "to-hero-manager",
-                "contents": "%to-hero.Refresh%"
+                "contents": "%to-hero.Refresh%",
+                "when": "to-hero.flagInitializationInProgress"
             }
         ]
     },

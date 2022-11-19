@@ -8,11 +8,12 @@
         });
     });
 
-    document.querySelector('.new-project-button')
-        .addEventListener('click', (element) => {
+    document.querySelectorAll('.newProjectButton').forEach(function(e) {
+        e.addEventListener('click', (element) => {
             var at = element.target.attributes['projectName'].value;
             callAction('newProject', at);
         });
+    });
 
     document.querySelector('#open-sandbox')
         .addEventListener('click', () => {

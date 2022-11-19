@@ -1,17 +1,21 @@
 import * as vscode from 'vscode';
-import { InputBoxOptions } from 'vscode';
 import { NetHelper } from './nethelper';
 import { ProjectsViewProvider } from './projectsviewprovider';
 import { PublicVariables } from './publicvariables';
 import { init, localize } from "vscode-nls-i18n";
+import { ProjectTemplates } from './projectTemplates';
+import { newProject } from './Commands/newProject';
+import { windowsWithProgress } from './Utils/Progress';
 
 export const pluginName:string = 'to-hero';
 
 export async function activate(context: vscode.ExtensionContext) {
 	init(context.extensionPath);
-
 	const pv = new PublicVariables();
-	const nh = new NetHelper(pv.getWorkspace(), context.extensionPath);
+
+	pv.setupFlag(pv.flagInitializationInProgress, true);
+
+	const nh = new NetHelper(pv.getWorkspace(), context.extensionPath, new ProjectTemplates());
 	const projectsView = new ProjectsViewProvider(context.extensionUri);
 
 	context.subscriptions.push(
@@ -54,26 +58,22 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand(pluginName + '.newProject', (templateName) => {
-			const options: InputBoxOptions={
-				title: localize("to-hero.newProjectName"),
-				value: nh.generateFolderName(),
-				validateInput: (a: string)=>{
-					return nh.validateFolder(a);
-				},
-				prompt: localize("to-hero.pleaseProvideNewProjectName")
-			};			
-
-			vscode.window.showInputBox(options).then(e=>{
-				nh.newProject(e!, templateName);
-			});
-			
-		}));
+			newProject(templateName, nh);
+	}));
 
 	context.subscriptions.push(
 		vscode.window
 			.registerWebviewViewProvider(ProjectsViewProvider.viewType, projectsView));
 	
+	context.subscriptions.push(
+		vscode.commands.registerCommand(pluginName+'.startTask', (description, taskToDo) => {
+			windowsWithProgress(description, taskToDo);
+		})
+	);
+
 	vscode.commands.executeCommand(pluginName+".refreshFlags");
+
+	pv.setupFlag(pv.flagInitializationInProgress, true);
 }
 
 // this method is called when your extension is deactivated
