@@ -2,8 +2,11 @@
 
 All notable changes to the "to-hero" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [0.9.18]
 
-## [Unreleased]
+- Fixed channgelog file
 
-- Initial release
+## [0.9.17]
+
+- Some initial preview relase with support for PLA on windows and icon.
+
