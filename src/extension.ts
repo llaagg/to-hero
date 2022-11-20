@@ -13,8 +13,6 @@ export const pluginName:string = 'to-hero';
 export async function activate(context: vscode.ExtensionContext) {
 	const pv = new PublicVariables();
 	const workingFolder = pv.getWorkspace();
-	const currentSubFolder = vscode.workspace.name!;
-	const currentRoot = vscode.workspace.rootPath!;
 
 	pv.setupFlag(pv.flagInitializationInProgress, true);
 
@@ -27,13 +25,19 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	pv.setupFlag(pv.flagInitializationInProgress, false);
 
-	// if( vscode.workspace.rootPath?.indexOf(workingFolder) === 0)
-	// {
-	// 	// that is our sandbox
-	// 	// let's open program or docs. 
-	// 	let filePath =  vscode.Uri.file(path.join(currentRoot, currentSubFolder, "Program.cs"));
-	// 	await  vscode.commands.executeCommand("vscode.open",  filePath);
-	// }
+	//  auto open program.cs for all projects in our sandbox
+	if( workingFolder &&
+		vscode.workspace.workspaceFolders &&
+		vscode.workspace.workspaceFolders.length === 1)
+	{
+		const firstFoler = vscode.workspace.workspaceFolders[0];
+		const workFolderUri = vscode.Uri.file(workingFolder);
+		if( firstFoler.uri.path.indexOf(workFolderUri.path) >= 0)
+		{
+			let filePath =  vscode.Uri.file(path.join(firstFoler.uri.path, "Program.cs"));
+			await  vscode.commands.executeCommand("vscode.open",  filePath);
+		}	
+	}
 }
 
 function addSubscriptions(context: vscode.ExtensionContext, pv: PublicVariables, workingFolder: string) {
@@ -92,6 +96,8 @@ function addSubscriptions(context: vscode.ExtensionContext, pv: PublicVariables,
 			windowsWithProgress(description, taskToDo);
 		})
 	);
+
+
 }
 
 // this method is called when your extension is deactivated

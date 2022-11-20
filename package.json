@@ -2,7 +2,7 @@
     "name": "to-hero",
     "displayName": "From 0 To .net hero",
     "description": "Extension that allows to setup development enviorment for .net and create some simple projects.",
-    "version": "0.9.20",
+    "version": "0.9.21",
     "publisher": "galcorp",
     "repository": {
         "type": "git",
